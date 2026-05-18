@@ -62,11 +62,10 @@ export function About() {
           transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
           className="relative aspect-[4/5] w-full bg-[#1A1A1A] overflow-hidden"
         >
-          {/* image placeholder */}
           <div className="absolute inset-0 bg-gradient-to-tr from-brand-black/50 to-transparent z-10" />
-          <motion.div 
+          <motion.div
              className="w-full h-full object-cover"
-             style={{ backgroundImage: 'url("https://picsum.photos/seed/about/800/1000")', backgroundSize: 'cover', backgroundPosition: 'center' }}
+             style={{ backgroundImage: 'url("/images/about.jpg")', backgroundSize: 'cover', backgroundPosition: 'center' }}
           />
         </motion.div>
       </div>

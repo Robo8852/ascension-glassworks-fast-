@@ -30,23 +30,28 @@ export function Hero() {
   };
 
   return (
-    <section 
-      id="home" 
-      className="relative flex items-center justify-center bg-brand-black w-full min-h-[85vh] lg:min-h-screen pt-20 px-4 sm:px-6 lg:px-8 text-center"
+    <section
+      id="home"
+      className="relative flex items-center justify-center bg-brand-black w-full min-h-[85vh] lg:min-h-screen pt-24 md:pt-32 px-4 sm:px-6 lg:px-8 text-center overflow-hidden"
     >
-      <motion.div 
-        variants={containerVariants} 
-        initial="hidden" 
-        animate="show" 
+      <div
+        className="absolute inset-0 z-0 bg-cover bg-center"
+        style={{ backgroundImage: 'url("/images/hero.jpg")' }}
+      />
+      <div className="absolute inset-0 z-0 bg-gradient-to-b from-brand-black/70 via-brand-black/50 to-brand-black/80" />
+
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        animate="show"
         className="max-w-4xl mx-auto flex flex-col items-center z-10"
       >
-        {/* Abstract "A" minimal logo representation */}
         <motion.div variants={itemVariants} className="mb-10 w-16 h-16 md:w-20 md:h-20 flex items-center justify-center">
-          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full text-gold">
-            <path d="M50 10 L20 80 L30 80 L50 30 L70 80 L80 80 Z" fill="currentColor"/>
-            <path d="M35 65 L65 65 L60 55 L40 55 Z" fill="currentColor"/>
-            <path d="M75 50 L85 80 L75 80 Z" fill="currentColor"/>
-          </svg>
+          <img
+            src="/logos/ascension-icon.svg"
+            alt="Ascension Glassworks"
+            className="w-full h-full object-contain"
+          />
         </motion.div>
 
         <div className="overflow-hidden mb-8">
@@ -73,8 +78,6 @@ export function Hero() {
           </Button>
         </motion.div>
       </motion.div>
-      
-      {/* Background glow or pure black? Prompt says "full-viewport black". We leave it black. */}
     </section>
   );
 }

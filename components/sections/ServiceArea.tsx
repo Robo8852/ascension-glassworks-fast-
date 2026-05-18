@@ -16,6 +16,13 @@ const CITIES = [
   "Surrounding Areas"
 ];
 
+const STATS = [
+  { value: "8+", label: "Cities Served" },
+  { value: "100mi", label: "Service Radius" },
+  { value: "24hr", label: "Response Window" },
+  { value: "100%", label: "Licensed & Insured" }
+];
+
 export function ServiceArea() {
   const containerVariants = {
     hidden: {},
@@ -61,28 +68,32 @@ export function ServiceArea() {
           </motion.ul>
         </div>
 
-        {/* Abstract Stylized Region / Graphic */}
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-          className="relative w-full aspect-square md:aspect-auto md:h-full min-h-[400px] border border-white/10 flex items-center justify-center p-8 bg-[#111111]"
+          className="grid grid-cols-2 gap-px bg-white/10 border border-white/10"
         >
-          {/* subtle grid or radial background to look like a map region abstractly */}
-          <div className="absolute inset-0 z-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '24px 24px' }}></div>
-          
-          <div className="relative z-10 w-full h-full flex items-center justify-center">
-            {/* A gold abstract polygon roughly shaped like central FL */}
-            <svg viewBox="0 0 200 200" fill="none" className="w-[80%] h-[80%] opacity-20">
-              <path d="M50 20 L150 40 L180 120 L130 180 L40 160 Z" stroke="#C8A96A" strokeWidth="1" strokeDasharray="4 4" />
-              <circle cx="90" cy="90" r="4" fill="#C8A96A" />
-              <circle cx="120" cy="70" r="3" fill="#C8A96A" />
-              <circle cx="100" cy="120" r="3" fill="#C8A96A" />
-              <circle cx="70" cy="100" r="2" fill="#C8A96A" />
-              <circle cx="140" cy="100" r="2" fill="#C8A96A" />
-            </svg>
-          </div>
+          {STATS.map((stat, i) => (
+            <motion.div
+              key={i}
+              variants={cityVariants}
+              className="relative bg-[#0a0a0a] aspect-square flex flex-col items-start justify-between p-6 md:p-8 lg:p-10 group"
+            >
+              <span className="text-[10px] tracking-[0.25em] uppercase text-brand-white/40 font-sans">
+                {String(i + 1).padStart(2, '0')}
+              </span>
+              <div>
+                <div className="text-4xl md:text-5xl lg:text-6xl font-sans font-light text-gold leading-none mb-3 tracking-tight">
+                  {stat.value}
+                </div>
+                <div className="text-[11px] md:text-xs tracking-[0.2em] uppercase text-brand-white/80 font-sans font-medium">
+                  {stat.label}
+                </div>
+              </div>
+            </motion.div>
+          ))}
         </motion.div>
       </div>
     </section>
