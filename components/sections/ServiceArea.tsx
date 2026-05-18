@@ -1,6 +1,7 @@
 'use client';
 
-import { motion } from 'motion/react';
+import { useEffect, useRef } from 'react';
+import { animate, motion, useInView, useMotionValue, useTransform } from 'motion/react';
 import { SectionHeadline } from '../SectionHeadline';
 import { MapPin } from 'lucide-react';
 
@@ -17,11 +18,34 @@ const CITIES = [
 ];
 
 const STATS = [
-  { value: "8+", label: "Cities Served" },
-  { value: "100mi", label: "Service Radius" },
-  { value: "24hr", label: "Response Window" },
-  { value: "100%", label: "Licensed & Insured" }
+  { value: 8,   suffix: "+",  label: "Cities Served" },
+  { value: 100, suffix: "mi", label: "Service Radius" },
+  { value: 24,  suffix: "hr", label: "Response Window" },
+  { value: 100, suffix: "%",  label: "Licensed & Insured" }
 ];
+
+function CountUp({ to, suffix, delay = 0 }: { to: number; suffix: string; delay?: number }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-80px" });
+  const count = useMotionValue(0);
+  const rounded = useTransform(count, (latest) => Math.round(latest));
+
+  useEffect(() => {
+    if (!inView) return;
+    const controls = animate(count, to, {
+      duration: 1.8,
+      delay,
+      ease: [0.22, 1, 0.36, 1] as const,
+    });
+    return () => controls.stop();
+  }, [inView, count, to, delay]);
+
+  return (
+    <span ref={ref}>
+      <motion.span>{rounded}</motion.span>{suffix}
+    </span>
+  );
+}
 
 export function ServiceArea() {
   const containerVariants = {
@@ -85,8 +109,8 @@ export function ServiceArea() {
                 {String(i + 1).padStart(2, '0')}
               </span>
               <div>
-                <div className="text-4xl md:text-5xl lg:text-6xl font-sans font-light text-gold leading-none mb-3 tracking-tight">
-                  {stat.value}
+                <div className="text-4xl md:text-5xl lg:text-6xl font-sans font-light text-gold leading-none mb-3 tracking-tight tabular-nums">
+                  <CountUp to={stat.value} suffix={stat.suffix} delay={0.4 + i * 0.15} />
                 </div>
                 <div className="text-[11px] md:text-xs tracking-[0.2em] uppercase text-brand-white/80 font-sans font-medium">
                   {stat.label}
