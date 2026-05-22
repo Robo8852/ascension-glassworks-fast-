@@ -5,25 +5,36 @@ import { SectionHeadline } from '../SectionHeadline';
 import { Button } from '@/components/ui/button';
 import { useRef, MouseEvent } from 'react';
 
-function MagneticButton({ children, className, variant = 'primary' }: { children: React.ReactNode, className?: string, variant?: 'primary' | 'outline' }) {
-  const ref = useRef<HTMLButtonElement>(null);
+function MagneticButton({
+  children,
+  className,
+  variant = 'primary',
+  href,
+  onClick,
+}: {
+  children: React.ReactNode;
+  className?: string;
+  variant?: 'primary' | 'outline';
+  href?: string;
+  onClick?: () => void;
+}) {
+  const ref = useRef<HTMLElement>(null);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
-  
+
   const springConfig = { damping: 15, stiffness: 150, mass: 0.1 };
   const springX = useSpring(x, springConfig);
   const springY = useSpring(y, springConfig);
 
-  const handlePointerMove = (e: MouseEvent<HTMLButtonElement>) => {
+  const handlePointerMove = (e: MouseEvent<HTMLElement>) => {
     if (!ref.current) return;
     const rect = ref.current.getBoundingClientRect();
     const centerX = rect.left + rect.width / 2;
     const centerY = rect.top + rect.height / 2;
-    
-    // Calculate distance
+
     const distanceX = e.clientX - centerX;
     const distanceY = e.clientY - centerY;
-    
+
     // Magnetic pull strength (less is weaker)
     x.set(distanceX * 0.2);
     y.set(distanceY * 0.2);
@@ -34,17 +45,35 @@ function MagneticButton({ children, className, variant = 'primary' }: { children
     y.set(0);
   };
 
-  const baseClasses = "uppercase text-[11px] tracking-[0.2em] font-medium rounded-none px-[28px] py-[12px] w-full lg:w-auto h-auto transition-all duration-300 cursor-pointer";
+  const baseClasses = "inline-flex items-center justify-center uppercase text-[11px] tracking-[0.2em] font-medium rounded-none px-[28px] py-[12px] w-full lg:w-auto h-auto transition-all duration-300 cursor-pointer";
   const primaryClasses = "bg-gold text-brand-black hover:bg-gold/90";
   const outlineClasses = "bg-transparent border border-gold text-gold hover:bg-gold hover:text-brand-black";
+  const composedClassName = `${baseClasses} ${variant === 'primary' ? primaryClasses : outlineClasses} ${className || ''}`;
+
+  if (href) {
+    return (
+      <motion.a
+        ref={ref as React.RefObject<HTMLAnchorElement>}
+        href={href}
+        onPointerMove={handlePointerMove}
+        onPointerLeave={handlePointerLeave}
+        onClick={onClick}
+        style={{ x: springX, y: springY }}
+        className={composedClassName}
+      >
+        {children}
+      </motion.a>
+    );
+  }
 
   return (
     <motion.button
-      ref={ref}
+      ref={ref as React.RefObject<HTMLButtonElement>}
       onPointerMove={handlePointerMove}
       onPointerLeave={handlePointerLeave}
+      onClick={onClick}
       style={{ x: springX, y: springY }}
-      className={`${baseClasses} ${variant === 'primary' ? primaryClasses : outlineClasses} ${className || ''}`}
+      className={composedClassName}
     >
       {children}
     </motion.button>
@@ -82,10 +111,10 @@ export function CTA() {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-6 w-full justify-center">
-          <MagneticButton>
-            Schedule Your Consultation
+          <MagneticButton href="tel:9412410002">
+            Call Now
           </MagneticButton>
-          <MagneticButton variant="outline">
+          <MagneticButton variant="outline" href="/contact">
             Request Your Estimate
           </MagneticButton>
         </div>

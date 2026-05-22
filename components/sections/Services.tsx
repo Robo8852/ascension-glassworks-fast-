@@ -5,6 +5,7 @@ import { SectionHeadline } from '../SectionHeadline';
 
 const SERVICES = [
   {
+    id: "window-replacement",
     title: "Window Replacement",
     desc: "Upgrade your home with professionally installed windows designed for beauty, efficiency, durability, and Florida weather performance.",
     bullets: [
@@ -17,6 +18,7 @@ const SERVICES = [
     ]
   },
   {
+    id: "exterior-doors",
     title: "Exterior Door Installation",
     desc: "Enhance curb appeal, security, and performance with expertly installed exterior doors tailored to your home.",
     bullets: [
@@ -29,6 +31,7 @@ const SERVICES = [
     ]
   },
   {
+    id: "impact-products",
     title: "Impact Products",
     desc: "Protect your home with impact-rated windows and doors engineered to withstand Florida storms while improving efficiency and security.",
     bullets: []
@@ -68,12 +71,13 @@ export function Services() {
           className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16"
         >
           {SERVICES.map((service, i) => (
-            <motion.div 
+            <motion.div
               key={i}
+              id={service.id}
               variants={cardVariants}
               whileHover={{ y: -8 }}
               transition={{ duration: 0.4, ease: "easeOut" }}
-              className="group bg-[#111111] border border-white/5 p-8 lg:p-10 flex flex-col cursor-default"
+              className="group bg-[#111111] border border-white/5 p-8 lg:p-10 flex flex-col cursor-default scroll-mt-24"
             >
               <div className="relative inline-block mb-6">
                 <h3 className="text-xl md:text-2xl font-sans font-light uppercase tracking-widest text-brand-white shrink-0">

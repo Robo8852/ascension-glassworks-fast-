@@ -2,17 +2,17 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { motion, AnimatePresence } from 'motion/react';
 import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetDescription } from '@/components/ui/sheet';
-import { Menu, ChevronDown, Phone, MapPin } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Menu, ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 type NavChild = { name: string; href: string };
 type NavLink = { name: string; href: string; children?: NavChild[] };
 
 const NAV_LINKS: NavLink[] = [
-  { name: 'Home', href: '#home' },
+  { name: 'Home', href: '/' },
   { name: 'About', href: '#about' },
   {
     name: 'Services',
@@ -25,8 +25,7 @@ const NAV_LINKS: NavLink[] = [
   },
   { name: 'Our Process', href: '#process' },
   { name: 'Service Area', href: '#service-area' },
-  { name: 'Reviews', href: '#reviews' },
-  { name: 'Contact', href: '#contact' },
+  { name: 'Contact', href: '/contact' },
 ];
 
 // Offset matches the scrolled desktop header height (h-20 = 80px). The user
@@ -76,24 +75,12 @@ export function Navigation() {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-9 hidden md:flex items-center justify-between">
           <span className="text-[10px] font-sans font-medium uppercase tracking-[0.2em] text-white/60">
-            Serving South Florida
+            Serving Florida&apos;s Gulf Coast
           </span>
-          <div className="flex items-center gap-6">
-            <a
-              href="tel:5555555555"
-              className="flex items-center gap-2 text-[10px] font-sans font-medium uppercase tracking-[0.2em] text-white/60 hover:text-gold transition-colors focus-visible:text-gold focus-visible:outline-none"
-            >
-              <Phone className="w-3 h-3" />
-              Phone: (555) 555-5555
-            </a>
-            <button
-              onClick={() => scrollTo('#service-area')}
-              className="flex items-center gap-2 text-[10px] font-sans font-medium uppercase tracking-[0.2em] text-white/60 hover:text-gold transition-colors focus-visible:text-gold focus-visible:outline-none"
-            >
-              <MapPin className="w-3 h-3" />
-              Get Directions
-            </button>
-          </div>
+          {/* TODO: replace placeholder FL contractor license number with the real one. */}
+          <span className="text-[10px] font-sans font-medium uppercase tracking-[0.2em] text-white/60">
+            Licensed &amp; Insured · FL #CGC000000
+          </span>
         </div>
       </motion.div>
 
@@ -103,9 +90,9 @@ export function Navigation() {
           scrolled ? "h-16 md:h-20" : "h-24 md:h-32"
         )}
       >
-        <a
-          href="#home"
-          onClick={(e) => { e.preventDefault(); scrollTo('#home'); }}
+        <Link
+          href="/"
+          onClick={() => setMobileMenuOpen(false)}
           className="flex items-center text-white focus-visible:outline-gold"
         >
           <Image
@@ -119,7 +106,7 @@ export function Navigation() {
               scrolled ? "h-12 md:h-16" : "h-20 md:h-28"
             )}
           />
-        </a>
+        </Link>
 
         {/* Desktop Nav */}
         <nav className="hidden lg:flex items-center space-x-8">
@@ -170,6 +157,14 @@ export function Navigation() {
                   )}
                 </AnimatePresence>
               </div>
+            ) : link.href.startsWith('/') ? (
+              <Link
+                key={link.name}
+                href={link.href}
+                className="whitespace-nowrap text-[10px] font-sans font-medium uppercase tracking-[0.2em] text-white/70 hover:text-gold transition-colors focus-visible:text-gold focus-visible:outline-none"
+              >
+                {link.name}
+              </Link>
             ) : (
               <button
                 key={link.name}
@@ -183,12 +178,12 @@ export function Navigation() {
         </nav>
 
         <div className="hidden lg:flex items-center">
-          <Button
-            onClick={() => scrollTo('#contact')}
-            className="bg-gold text-brand-black cursor-pointer hover:bg-gold/90 uppercase text-[11px] tracking-[0.2em] font-medium rounded-none px-[28px] py-[12px] h-auto transition-all duration-300"
+          <a
+            href="tel:9412410002"
+            className="inline-flex items-center justify-center bg-gold text-brand-black hover:bg-gold/90 uppercase text-[11px] tracking-[0.2em] font-medium rounded-none px-[28px] py-[12px] transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/70 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-black"
           >
-            Schedule Consultation
-          </Button>
+            Call Now
+          </a>
         </div>
 
         {/* Mobile Nav Toggle */}
@@ -202,12 +197,22 @@ export function Navigation() {
             <div className="flex flex-col space-y-8 mt-12">
               {NAV_LINKS.map(link => (
                 <div key={link.name} className="flex flex-col space-y-4">
-                  <button
-                    onClick={() => scrollTo(link.href)}
-                    className="text-left text-2xl font-sans font-light uppercase tracking-[0.15em] text-white hover:text-gold transition-colors"
-                  >
-                    {link.name}
-                  </button>
+                  {link.href.startsWith('/') ? (
+                    <Link
+                      href={link.href}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="text-left text-2xl font-sans font-light uppercase tracking-[0.15em] text-white hover:text-gold transition-colors"
+                    >
+                      {link.name}
+                    </Link>
+                  ) : (
+                    <button
+                      onClick={() => scrollTo(link.href)}
+                      className="text-left text-2xl font-sans font-light uppercase tracking-[0.15em] text-white hover:text-gold transition-colors"
+                    >
+                      {link.name}
+                    </button>
+                  )}
                   {link.children && (
                     <div className="flex flex-col space-y-3 pl-6">
                       {link.children.map(child => (
@@ -225,34 +230,22 @@ export function Navigation() {
               ))}
             </div>
             <div className="flex flex-col space-y-4">
-              <a href="tel:5555555555" className="block text-center border border-white/20 py-4 text-white uppercase text-xs tracking-widest hover:border-gold hover:text-gold transition-colors">
-                Call Us: (555) 555-5555
-              </a>
-              <Button
-                onClick={() => scrollTo('#contact')}
-                className="bg-gold text-brand-black w-full hover:bg-gold/90 uppercase text-xs tracking-[0.1em] font-medium rounded-none py-6"
+              <a
+                href="tel:9412410002"
+                onClick={() => setMobileMenuOpen(false)}
+                className="inline-flex items-center justify-center bg-gold text-brand-black w-full hover:bg-gold/90 uppercase text-xs tracking-[0.1em] font-medium rounded-none py-6 transition-colors"
               >
-                Schedule Consultation
-              </Button>
+                Call Now
+              </a>
               {/* Mobile mirror of the utility bar (Pattern 1) */}
               <div className="pt-6 mt-2 border-t border-white/10 flex flex-col space-y-3">
                 <span className="text-[10px] font-sans font-medium uppercase tracking-[0.2em] text-white/60">
-                  Serving South Florida
+                  Serving Florida&apos;s Gulf Coast
                 </span>
-                <a
-                  href="tel:5555555555"
-                  className="flex items-center gap-2 text-[10px] font-sans font-medium uppercase tracking-[0.2em] text-white/60 hover:text-gold transition-colors"
-                >
-                  <Phone className="w-3 h-3" />
-                  Phone: (555) 555-5555
-                </a>
-                <button
-                  onClick={() => scrollTo('#service-area')}
-                  className="flex items-center gap-2 text-[10px] font-sans font-medium uppercase tracking-[0.2em] text-white/60 hover:text-gold transition-colors text-left"
-                >
-                  <MapPin className="w-3 h-3" />
-                  Get Directions
-                </button>
+                {/* TODO: replace placeholder FL contractor license number with the real one. */}
+                <span className="text-[10px] font-sans font-medium uppercase tracking-[0.2em] text-white/60">
+                  Licensed &amp; Insured · FL #CGC000000
+                </span>
               </div>
             </div>
           </SheetContent>

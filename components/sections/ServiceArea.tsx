@@ -13,7 +13,6 @@ const CITIES = [
   "Tampa",
   "St. Petersburg",
   "Clearwater",
-  "Orlando",
   "Surrounding Areas"
 ];
 
@@ -71,9 +70,9 @@ export function ServiceArea() {
     <section id="service-area" className="py-16 md:py-20 lg:py-28 px-4 sm:px-6 lg:px-8 bg-[#0a0a0a] w-full overflow-hidden border-t border-white/5">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 lg:gap-24 items-center">
         <div>
-          <SectionHeadline>Proudly Serving Central Florida</SectionHeadline>
+          <SectionHeadline>Proudly Serving Florida&apos;s Gulf Coast</SectionHeadline>
           <p className="text-brand-white/70 text-sm md:text-base leading-relaxed max-w-md font-sans mb-12">
-            Ascension Glassworks proudly serves homeowners throughout Central Florida with professional window and door installation services.
+            Ascension Glassworks proudly serves homeowners throughout Florida&apos;s Gulf Coast with professional window and door installation services.
           </p>
 
           <motion.ul 
