@@ -98,16 +98,15 @@ export const metadata: Metadata = {
   },
 };
 
-// TODO: replace placeholder telephone, postal address, and image once real
-// business details and assets are finalized.
+// TODO: replace placeholder postal address and image once real business
+// details and assets are finalized.
 const localBusinessJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'HomeAndConstructionBusiness',
   name: 'Ascension Glassworks LLC',
   description: SHORT_DESCRIPTION,
   url: SITE_URL,
-  // TODO: replace placeholder phone number with real business line.
-  telephone: '+1-555-555-5555',
+  telephone: '+1-941-241-0002',
   // TODO: replace with real OG/brand image once /public/og-image.jpg exists.
   image: `${SITE_URL}/og-image.jpg`,
   priceRange: '$$',

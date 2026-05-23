@@ -7,7 +7,7 @@ const SERVICES = [
   {
     id: "window-replacement",
     title: "Window Replacement",
-    desc: "Upgrade your home with professionally installed windows designed for beauty, efficiency, durability, and Florida weather performance.",
+    desc: "Replacement and new-build installation, from vinyl to impact-rated aluminum. Every opening flashed, shimmed, and sealed to manufacturer spec — not “close enough.”",
     bullets: [
       "Impact Windows",
       "Energy Efficient Windows",
@@ -20,7 +20,7 @@ const SERVICES = [
   {
     id: "exterior-doors",
     title: "Exterior Door Installation",
-    desc: "Enhance curb appeal, security, and performance with expertly installed exterior doors tailored to your home.",
+    desc: "Entry, patio, French, sliding. Plumb to a sixteenth. Threshold pan flashed. Hardware torqued, not eyeballed. The kind of install you only notice if it’s wrong.",
     bullets: [
       "Entry Doors",
       "Sliding Glass Doors",
@@ -33,8 +33,15 @@ const SERVICES = [
   {
     id: "impact-products",
     title: "Impact Products",
-    desc: "Protect your home with impact-rated windows and doors engineered to withstand Florida storms while improving efficiency and security.",
-    bullets: []
+    desc: "Large-missile-rated windows and doors built for Florida’s Wind-Borne Debris Region. ASTM-tested assemblies installed to the design-pressure spec for your wind zone.",
+    bullets: [
+      "Impact Windows",
+      "Impact Doors",
+      "Hurricane Sliders",
+      "Laminated Glass",
+      "Storm-Rated Entries",
+      "Wind Zone Compliance"
+    ]
   }
 ];
 
@@ -61,9 +68,29 @@ export function Services() {
   return (
     <section id="services" className="py-16 md:py-20 lg:py-28 px-4 sm:px-6 lg:px-8 bg-brand-black w-full overflow-hidden">
       <div className="max-w-7xl mx-auto">
-        <SectionHeadline>Professional Window & Door Solutions</SectionHeadline>
+        <motion.p
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="text-[11px] tracking-[0.3em] uppercase text-gold font-sans mb-6"
+        >
+          The Work
+        </motion.p>
 
-        <motion.div 
+        <SectionHeadline>Three Disciplines. One Standard.</SectionHeadline>
+
+        <motion.p
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+          className="text-brand-white/75 font-sans font-light leading-relaxed text-base md:text-lg max-w-2xl -mt-4 mb-4"
+        >
+          Windows. Doors. Installed to spec, to code, and to the standard our name is on.
+        </motion.p>
+
+        <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"

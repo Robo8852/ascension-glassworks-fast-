@@ -13,18 +13,18 @@ type NavLink = { name: string; href: string; children?: NavChild[] };
 
 const NAV_LINKS: NavLink[] = [
   { name: 'Home', href: '/' },
-  { name: 'About', href: '#about' },
+  { name: 'About', href: '/#about' },
   {
-    name: 'Services',
-    href: '#services',
+    name: 'The Work',
+    href: '/work',
     children: [
-      { name: 'Window Replacement', href: '#window-replacement' },
-      { name: 'Exterior Door Installation', href: '#exterior-doors' },
-      { name: 'Impact Products', href: '#impact-products' },
+      { name: 'Window Replacement', href: '/work/window-replacement' },
+      { name: 'Exterior Door Installation', href: '/work/exterior-doors' },
+      { name: 'Impact Products', href: '/work/impact-products' },
     ],
   },
-  { name: 'Our Process', href: '#process' },
-  { name: 'Service Area', href: '#service-area' },
+  { name: 'Our Process', href: '/#process' },
+  { name: 'Service Area', href: '/service-area' },
   { name: 'Contact', href: '/contact' },
 ];
 
@@ -49,11 +49,22 @@ export function Navigation() {
   const scrollTo = (href: string) => {
     setMobileMenuOpen(false);
     setOpenDropdown(null);
-    const el = document.querySelector(href);
-    if (el) {
-      const top = el.getBoundingClientRect().top + window.scrollY - SCROLL_OFFSET;
-      window.scrollTo({ top, behavior: 'smooth' });
+    const hashIndex = href.indexOf('#');
+    if (hashIndex === -1) {
+      window.location.href = href;
+      return;
     }
+    const path = href.slice(0, hashIndex) || '/';
+    const selector = href.slice(hashIndex);
+    if (window.location.pathname === path) {
+      const el = document.querySelector(selector);
+      if (el) {
+        const top = el.getBoundingClientRect().top + window.scrollY - SCROLL_OFFSET;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+      return;
+    }
+    window.location.href = href;
   };
 
   return (

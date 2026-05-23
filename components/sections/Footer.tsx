@@ -26,13 +26,19 @@ export function Footer() {
         {/* Col 2 - Nav */}
         <div className="flex flex-col md:items-center">
           <nav className="flex flex-col space-y-4">
-            {['Home', 'About', 'Services', 'Our Process', 'Service Area'].map((link) => (
-              <a 
-                key={link} 
-                href={`#${link.toLowerCase().replace(' ', '-')}`} 
+            {[
+              { name: 'Home', href: '/' },
+              { name: 'About', href: '/#about' },
+              { name: 'Services', href: '/#services' },
+              { name: 'Our Process', href: '/#process' },
+              { name: 'Service Area', href: '/service-area' },
+            ].map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
                 className="text-xs font-sans font-medium uppercase tracking-[0.1em] text-white/60 hover:text-gold transition-colors block"
               >
-                {link}
+                {link.name}
               </a>
             ))}
           </nav>
