@@ -9,6 +9,7 @@
  */
 
 import type * as contact from "../contact.js";
+import type * as email from "../email.js";
 
 import type {
   ApiFromModules,
@@ -18,6 +19,7 @@ import type {
 
 declare const fullApi: ApiFromModules<{
   contact: typeof contact;
+  email: typeof email;
 }>;
 
 /**

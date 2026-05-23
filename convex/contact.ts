@@ -1,4 +1,5 @@
 import { mutation } from './_generated/server';
+import { internal } from './_generated/api';
 import { ConvexError, v } from 'convex/values';
 
 const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000;
@@ -50,6 +51,17 @@ export const submitContact = mutation({
       preferredContact: args.preferredContact,
       message: args.message,
     });
+
+    await ctx.scheduler.runAfter(0, internal.email.sendContactEmails, {
+      name: args.name,
+      phone: args.phone,
+      email: normalizedEmail,
+      location: args.location,
+      service: args.service,
+      preferredContact: args.preferredContact,
+      message: args.message,
+    });
+
     return id;
   },
 });
