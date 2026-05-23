@@ -47,10 +47,10 @@ export function Footer() {
         {/* Col 3 - Contact */}
         <div className="flex flex-col md:items-end text-left md:text-right">
           <h4 className="text-sm font-sans font-medium uppercase tracking-widest text-white mb-6">Contact Us</h4>
-          <a href="tel:9412410002" className="text-xs font-sans font-medium uppercase tracking-[0.1em] text-white/60 hover:text-gold transition-colors block">
+          <a href="tel:9412410002" data-track-location="footer" className="text-xs font-sans font-medium uppercase tracking-[0.1em] text-white/60 hover:text-gold transition-colors block">
             (941) 241-0002
           </a>
-          <Link href="/contact" className="text-xs font-sans font-medium uppercase tracking-[0.1em] text-white/60 hover:text-gold transition-colors block mt-4">
+          <Link href="/contact" data-track="cta_click" data-track-cta="send-a-message" data-track-location="footer" className="text-xs font-sans font-medium uppercase tracking-[0.1em] text-white/60 hover:text-gold transition-colors block mt-4">
             Send a Message
           </Link>
         </div>

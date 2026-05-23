@@ -54,12 +54,16 @@ export function Hero() {
         <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
           <a
             href="tel:9412410002"
+            data-track-location="hero"
             className="inline-flex items-center justify-center bg-gold text-brand-black hover:bg-gold/90 uppercase text-[11px] tracking-[0.2em] font-medium rounded-none px-[28px] py-[12px] w-full sm:w-auto h-auto transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/70 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-black"
           >
             Call Now
           </a>
           <Link
             href="/contact"
+            data-track="cta_click"
+            data-track-cta="explore-your-options"
+            data-track-location="hero"
             className="inline-flex items-center justify-center border border-gold text-gold bg-transparent hover:bg-gold hover:text-brand-black uppercase text-[11px] tracking-[0.2em] font-medium rounded-none px-[28px] py-[12px] w-full sm:w-auto h-auto transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/70 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-black"
           >
             Explore Your Options

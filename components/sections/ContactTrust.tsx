@@ -58,6 +58,7 @@ export function ContactTrust() {
         </div>
         <a
           href="tel:9412410002"
+          data-track-location="contact-page-sidebar"
           className="inline-flex items-center justify-center gap-2 bg-transparent border border-gold text-gold hover:bg-gold hover:text-brand-black uppercase text-[11px] tracking-[0.2em] font-medium rounded-none px-[28px] py-[12px] w-full sm:w-auto h-auto transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/70 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-black"
         >
           <Phone className="w-3.5 h-3.5" strokeWidth={1.5} aria-hidden="true" />

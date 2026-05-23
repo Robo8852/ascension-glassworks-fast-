@@ -7,6 +7,7 @@ import { z } from 'zod';
 import { useMutation } from 'convex/react';
 import { ConvexError } from 'convex/values';
 import { api } from '@/convex/_generated/api';
+import { trackEvent } from '@/lib/analytics';
 
 const PHONE_RE = /^[\d\s().+-]{10,}$/;
 
@@ -100,6 +101,12 @@ export function ContactForm() {
         service: values.service,
         preferredContact: values.preferredContact,
         message: values.message || undefined,
+      });
+      trackEvent('generate_lead', {
+        form_name: 'contact',
+        service: values.service,
+        preferred_contact: values.preferredContact,
+        location: values.location,
       });
       setSubmitted(true);
     } catch (err) {

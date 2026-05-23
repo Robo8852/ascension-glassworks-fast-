@@ -191,6 +191,7 @@ export function Navigation() {
         <div className="hidden lg:flex items-center">
           <a
             href="tel:9412410002"
+            data-track-location="nav-desktop"
             className="inline-flex items-center justify-center bg-gold text-brand-black hover:bg-gold/90 uppercase text-[11px] tracking-[0.2em] font-medium rounded-none px-[28px] py-[12px] transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/70 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-black"
           >
             Call Now
@@ -243,6 +244,7 @@ export function Navigation() {
             <div className="flex flex-col space-y-4">
               <a
                 href="tel:9412410002"
+                data-track-location="nav-mobile"
                 onClick={() => setMobileMenuOpen(false)}
                 className="inline-flex items-center justify-center bg-gold text-brand-black w-full hover:bg-gold/90 uppercase text-xs tracking-[0.1em] font-medium rounded-none py-6 transition-colors"
               >

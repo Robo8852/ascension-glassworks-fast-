@@ -1,8 +1,14 @@
 import type { Metadata } from 'next';
+import { Suspense } from 'react';
 import './globals.css';
 import { Montserrat } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { ConvexClientProvider } from "@/components/providers/ConvexClientProvider";
+import {
+  GoogleTagManager,
+  GoogleTagManagerNoScript,
+} from '@/components/analytics/GoogleTagManager';
+import { AnalyticsListener } from '@/components/analytics/AnalyticsListener';
 
 const montserrat = Montserrat({
   subsets: ['latin'],
@@ -137,11 +143,18 @@ const localBusinessJsonLd = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={cn("font-sans bg-[#0B0B0B] text-white", montserrat.variable)}>
+      <head>
+        <GoogleTagManager />
+      </head>
       <body suppressHydrationWarning className="antialiased overflow-x-hidden">
+        <GoogleTagManagerNoScript />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
         />
+        <Suspense fallback={null}>
+          <AnalyticsListener />
+        </Suspense>
         <ConvexClientProvider>{children}</ConvexClientProvider>
       </body>
     </html>
