@@ -4,6 +4,9 @@ import { useEffect, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
+import { useMutation } from 'convex/react';
+import { ConvexError } from 'convex/values';
+import { api } from '@/convex/_generated/api';
 
 const PHONE_RE = /^[\d\s().+-]{10,}$/;
 
@@ -24,7 +27,10 @@ const contactSchema = z.object({
     message: 'Please choose a preferred contact method.',
   }),
   message: z.string().trim().max(1000, 'Please keep your message under 1000 characters.').optional(),
+  honeypot: z.string().optional(),
 });
+
+const MIN_SUBMIT_MS = 3000;
 
 type ContactFormValues = z.infer<typeof contactSchema>;
 
@@ -42,7 +48,10 @@ function fieldBorder(hasError: boolean) {
 
 export function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const successRef = useRef<HTMLDivElement | null>(null);
+  const mountTimeRef = useRef<number>(Date.now());
+  const submitContact = useMutation(api.contact.submitContact);
 
   const {
     register,
@@ -59,6 +68,7 @@ export function ContactForm() {
       service: undefined,
       preferredContact: undefined,
       message: '',
+      honeypot: '',
     },
   });
 
@@ -68,14 +78,44 @@ export function ContactForm() {
     }
   }, [submitted]);
 
-  const onSubmit = async (_values: ContactFormValues) => {
-    await new Promise((r) => setTimeout(r, 800));
-    setSubmitted(true);
+  const onSubmit = async (values: ContactFormValues) => {
+    setSubmitError(null);
+
+    if (values.honeypot && values.honeypot.trim().length > 0) {
+      setSubmitted(true);
+      return;
+    }
+
+    if (Date.now() - mountTimeRef.current < MIN_SUBMIT_MS) {
+      setSubmitted(true);
+      return;
+    }
+
+    try {
+      await submitContact({
+        name: values.name,
+        phone: values.phone,
+        email: values.email,
+        location: values.location,
+        service: values.service,
+        preferredContact: values.preferredContact,
+        message: values.message || undefined,
+      });
+      setSubmitted(true);
+    } catch (err) {
+      console.error('Contact submission failed', err);
+      const message =
+        err instanceof ConvexError && typeof err.data === 'string'
+          ? err.data
+          : "Something went wrong sending your message. Please try again, or call us at (941) 241-0002.";
+      setSubmitError(message);
+    }
   };
 
   const handleReset = () => {
     reset();
     setSubmitted(false);
+    setSubmitError(null);
   };
 
   if (submitted) {
@@ -113,6 +153,26 @@ export function ContactForm() {
       noValidate
       className="space-y-8"
     >
+      <div
+        aria-hidden="true"
+        style={{
+          position: 'absolute',
+          left: '-9999px',
+          width: '1px',
+          height: '1px',
+          overflow: 'hidden',
+        }}
+      >
+        <label htmlFor="contact-website">Website (leave blank)</label>
+        <input
+          id="contact-website"
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+          {...register('honeypot')}
+        />
+      </div>
+
       <div className="space-y-1">
         <label htmlFor="contact-name" className={FIELD_LABEL_CLASS}>
           Name
@@ -287,6 +347,12 @@ export function ContactForm() {
           </p>
         )}
       </div>
+
+      {submitError && (
+        <p role="alert" className="text-red-400 text-sm font-light">
+          {submitError}
+        </p>
+      )}
 
       <div className="pt-2">
         <button
