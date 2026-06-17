@@ -8,6 +8,7 @@ import {
   GoogleTagManager,
   GoogleTagManagerNoScript,
 } from '@/components/analytics/GoogleTagManager';
+import { GoogleAds } from '@/components/analytics/GoogleAds';
 import { AnalyticsListener } from '@/components/analytics/AnalyticsListener';
 
 const montserrat = Montserrat({
@@ -145,6 +146,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={cn("font-sans bg-[#0B0B0B] text-white", montserrat.variable)}>
       <head>
         <GoogleTagManager />
+        <GoogleAds />
       </head>
       <body suppressHydrationWarning className="antialiased overflow-x-hidden">
         <GoogleTagManagerNoScript />
