@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -369,8 +370,21 @@ export function ContactForm() {
         >
           {isSubmitting ? 'Sending...' : 'Send Message'}
         </button>
-        <p className="text-[10px] tracking-[0.15em] uppercase text-white/40 mt-4">
-          By submitting, you agree to be contacted about your project.
+        <p className="text-[11px] leading-relaxed font-light text-white/50 mt-6 max-w-2xl">
+          <span className="text-white/70">Disclaimer:</span> By providing my contact
+          information to Ascension Glassworks, I acknowledge and give my explicit consent
+          to be contacted via SMS and receive emails for various purposes, which may
+          include marketing and promotional content. Message and data rates may apply.
+          Message frequency may vary. Reply <span className="text-white/70">STOP</span> to
+          opt-out. Reply <span className="text-white/70">HELP</span> for more information.
+          Refer to our{' '}
+          <Link
+            href="/privacy"
+            className="text-gold underline underline-offset-2 hover:text-gold/80 transition-colors"
+          >
+            Privacy Policy
+          </Link>{' '}
+          for more information.
         </p>
       </div>
     </form>

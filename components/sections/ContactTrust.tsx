@@ -24,7 +24,7 @@ const TRUST_ITEMS: TrustItem[] = [
     id: 'LicensedInsured',
     icon: ShieldCheck,
     title: 'Licensed & Insured',
-    body: 'FL #CGC000000',
+    body: 'Fully licensed and insured across Florida.',
   },
 ];
 

@@ -88,9 +88,8 @@ export function Navigation() {
           <span className="text-[10px] font-sans font-medium uppercase tracking-[0.2em] text-white/60">
             Serving Florida&apos;s Gulf Coast
           </span>
-          {/* TODO: replace placeholder FL contractor license number with the real one. */}
           <span className="text-[10px] font-sans font-medium uppercase tracking-[0.2em] text-white/60">
-            Licensed &amp; Insured · FL #CGC000000
+            Licensed &amp; Insured
           </span>
         </div>
       </motion.div>
@@ -256,9 +255,8 @@ export function Navigation() {
                 <span className="text-[10px] font-sans font-medium uppercase tracking-[0.2em] text-white/60">
                   Serving Florida&apos;s Gulf Coast
                 </span>
-                {/* TODO: replace placeholder FL contractor license number with the real one. */}
                 <span className="text-[10px] font-sans font-medium uppercase tracking-[0.2em] text-white/60">
-                  Licensed &amp; Insured · FL #CGC000000
+                  Licensed &amp; Insured
                 </span>
               </div>
             </div>
