@@ -19,7 +19,7 @@ export default function ContactPage() {
     <main className="bg-brand-black text-brand-white min-h-screen">
       <Navigation />
 
-      <section className="pt-32 md:pt-44 pb-12 md:pb-16 px-4 sm:px-6 lg:px-8">
+      <section className="pt-40 md:pt-52 pb-12 md:pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           <SectionHeadline>Let&apos;s Talk About Your Project</SectionHeadline>
           <p className="text-brand-white/80 text-base md:text-lg leading-relaxed max-w-2xl font-sans font-light">

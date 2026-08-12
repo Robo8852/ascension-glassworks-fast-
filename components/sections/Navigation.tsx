@@ -98,7 +98,7 @@ export function Navigation() {
       <div
         className={cn(
           "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between transition-all duration-300",
-          scrolled ? "h-16 md:h-20" : "h-24 md:h-32"
+          scrolled ? "h-16 md:h-24" : "h-28 md:h-36"
         )}
       >
         <Link
@@ -107,14 +107,15 @@ export function Navigation() {
           className="flex items-center text-white focus-visible:outline-gold"
         >
           <Image
-            src="/ascension_primary_no_tagline.png"
-            alt="Ascension Glassworks"
-            width={880}
-            height={430}
+            src="/logos/ascension-lockup.svg"
+            alt="Ascension Glassworks — Raising Standards"
+            width={173}
+            height={131}
             priority
+            unoptimized
             className={cn(
               "w-auto transition-all duration-300",
-              scrolled ? "h-12 md:h-16" : "h-20 md:h-28"
+              scrolled ? "h-14 md:h-20" : "h-24 md:h-32"
             )}
           />
         </Link>

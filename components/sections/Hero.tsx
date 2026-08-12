@@ -23,7 +23,7 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="relative flex items-center justify-center bg-brand-black w-full min-h-[85vh] lg:min-h-screen pt-40 md:pt-52 px-4 sm:px-6 lg:px-8 text-center overflow-hidden"
+      className="relative flex items-center justify-center bg-brand-black w-full min-h-[85vh] lg:min-h-screen pt-44 md:pt-60 px-4 sm:px-6 lg:px-8 text-center overflow-hidden"
     >
       <div
         className="absolute inset-0 z-0 bg-cover bg-center"

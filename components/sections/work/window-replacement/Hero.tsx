@@ -30,7 +30,7 @@ export function Hero() {
   return (
     <section
       id="window-hero"
-      className="pt-32 md:pt-44 pb-12 md:pb-20 px-4 sm:px-6 lg:px-8 bg-brand-black overflow-hidden"
+      className="pt-40 md:pt-52 pb-12 md:pb-20 px-4 sm:px-6 lg:px-8 bg-brand-black overflow-hidden"
     >
       <div className="max-w-6xl mx-auto">
         <motion.div

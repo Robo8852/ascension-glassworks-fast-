@@ -9,18 +9,11 @@ export function Footer() {
         
         {/* Col 1 */}
         <div className="flex flex-col items-start">
-          <div className="flex flex-col items-start mb-6">
-            <img
-              src="/logos/ascension-icon.svg"
-              alt="Ascension Glassworks"
-              className="w-14 h-14 md:w-16 md:h-16 object-contain mb-4"
-            />
-            <span className="font-sans font-light tracking-[0.2em] text-2xl uppercase leading-none text-white">Ascension</span>
-            <span className="font-sans font-medium tracking-[0.3em] text-[10px] text-gold uppercase mt-1">Glassworks</span>
-          </div>
-          <p className="text-white/60 text-sm font-sans tracking-wide max-w-[250px]">
-            Clearly Raising Standards.
-          </p>
+          <img
+            src="/logos/ascension-lockup.svg"
+            alt="Ascension Glassworks — Raising Standards"
+            className="h-28 md:h-32 w-auto object-contain"
+          />
         </div>
 
         {/* Col 2 - Nav */}
@@ -59,6 +52,13 @@ export function Footer() {
       <div className="max-w-7xl mx-auto border-t border-white/5 pt-8 flex justify-center">
         <p className="text-[10px] uppercase tracking-widest text-white/40">
           © {new Date().getFullYear()} Ascension Glassworks LLC. All Rights Reserved.
+          {' · '}
+          <Link
+            href="/privacy"
+            className="text-white/70 underline underline-offset-2 hover:text-gold transition-colors"
+          >
+            Privacy Policy
+          </Link>
         </p>
       </div>
     </footer>

@@ -28,7 +28,7 @@ export function ServiceAreaPageHero() {
   };
 
   return (
-    <section className="pt-32 md:pt-44 pb-12 md:pb-20 px-4 sm:px-6 lg:px-8 bg-brand-black overflow-hidden">
+    <section className="pt-40 md:pt-52 pb-12 md:pb-20 px-4 sm:px-6 lg:px-8 bg-brand-black overflow-hidden">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial="hidden"
