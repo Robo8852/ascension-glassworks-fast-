@@ -105,6 +105,10 @@ export default function PrivacyPage() {
               You may also unsubscribe from email communications by clicking the
               &ldquo;unsubscribe&rdquo; link included in our emails.
             </p>
+            <p className="mt-3 text-brand-white">
+              Mobile opt-in data and SMS consent are not shared or sold to third parties
+              for marketing purposes.
+            </p>
           </section>
 
           <section>
@@ -119,6 +123,10 @@ export default function PrivacyPage() {
               it, manufacturers, suppliers, permitting authorities, or installation
               partners. These parties are obligated to keep your information
               confidential and to use it only for the services they provide to us.
+            </p>
+            <p className="mt-3 text-brand-white">
+              Mobile opt-in data and SMS consent are not shared or sold to third parties
+              for marketing purposes.
             </p>
           </section>
 
