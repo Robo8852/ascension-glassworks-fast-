@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   },
 };
 
-const LAST_UPDATED = 'August 12, 2026';
+const LAST_UPDATED = 'August 20, 2026';
 
 export default function PrivacyPage() {
   return (
@@ -106,8 +106,10 @@ export default function PrivacyPage() {
               &ldquo;unsubscribe&rdquo; link included in our emails.
             </p>
             <p className="mt-3 text-brand-white">
-              Mobile opt-in data and SMS consent are not shared or sold to third parties
-              for marketing purposes.
+              We do not transfer or share consumer data, including mobile numbers, SMS
+              opt-in data, and consent records, with any external organizations except as
+              strictly necessary to provide the messaging service, and never for
+              marketing or independent use by third parties.
             </p>
           </section>
 
@@ -122,11 +124,16 @@ export default function PrivacyPage() {
               services, scheduling and estimating software, and, where a project requires
               it, manufacturers, suppliers, permitting authorities, or installation
               partners. These parties are obligated to keep your information
-              confidential and to use it only for the services they provide to us.
+              confidential, to use it only for the services they provide to us, and to
+              prevent any unauthorized sharing of your information.
             </p>
             <p className="mt-3 text-brand-white">
-              Mobile opt-in data and SMS consent are not shared or sold to third parties
-              for marketing purposes.
+              We do not transfer or share consumer data, including mobile numbers, SMS
+              opt-in data, and consent records, with any external organizations except as
+              strictly necessary to provide the messaging service, and never for
+              marketing or independent use by third parties. Mobile opt-in data and SMS
+              consent are never shared or sold for SMS registration, compliance, or
+              marketing purposes.
             </p>
           </section>
 
@@ -137,8 +144,10 @@ export default function PrivacyPage() {
             <p>
               We implement reasonable security measures to protect your personal
               information from unauthorized access, alteration, disclosure, or
-              destruction. However, no method of transmission over the Internet is 100%
-              secure.
+              destruction, and to prevent unauthorized sharing of your data. Access to
+              mobile numbers, SMS opt-in data, and consent records is restricted to
+              personnel and service providers who need it to deliver our services.
+              However, no method of transmission over the Internet is 100% secure.
             </p>
           </section>
 
@@ -183,16 +192,23 @@ export default function PrivacyPage() {
               Contact Us
             </h2>
             <p>
-              If you have any questions about this Privacy Policy or wish to exercise your
-              rights, please call us at{' '}
+              If you have questions about this Privacy Policy or our SMS communications,
+              contact Ascension Glassworks LLC at{' '}
               <a href="tel:9412410002" className="text-gold hover:text-gold/80 underline">
-                (941) 241-0002
+                941-241-0002
               </a>{' '}
-              or reach us through our{' '}
+              or email us at{' '}
+              <a
+                href="mailto:Ascensionglassworksllc@gmail.com"
+                className="text-gold hover:text-gold/80 underline"
+              >
+                Ascensionglassworksllc@gmail.com
+              </a>
+              . You may also reach us through our{' '}
               <Link href="/contact" className="text-gold hover:text-gold/80 underline">
                 contact form
-              </Link>
-              .
+              </Link>{' '}
+              to exercise any of the rights described above.
             </p>
           </section>
         </div>
