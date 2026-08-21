@@ -18,6 +18,35 @@ Twilio delivery vendor mention in the privacy policy's service-provider
 language; the site itself sends email via Resend and nothing via Twilio.
 Earlier versions of this document assumed Twilio — that was never set up.
 
+### What Grasshopper does and does not do
+
+Grasshopper is the **phone system**. Texting is a feature of it, not a
+messaging platform:
+
+- Built in: Instant Response (auto-text to a missed caller), manual texting
+  from the Grasshopper app/desktop with a shared team inbox, business-hours
+  routing, voicemail transcription.
+- **No public SMS API and no inbound-text webhooks.** Nothing on the website or
+  in Convex can send or receive a text through Grasshopper. Zapier-style
+  integrations do not cover Grasshopper SMS.
+
+Anything where software sends the text needs Twilio (or an equivalent API
+provider): form submitted -> "we got your request" text, appointment
+confirmations and day-before reminders, inbound texts logged to Convex,
+project status pushes. Each of those is a few lines in a Convex function
+calling Twilio.
+
+Decision, 2026-08-21: **do not build toward Twilio until there is a concrete
+automation to ship.** Get the Grasshopper campaign approved first; the privacy
+policy, consent checkbox, and approved campaign copy carry over unchanged. When
+the first automation comes up, choose between:
+
+1. **Twilio alongside Grasshopper** — its own number and campaign under the
+   same TCR brand. Cheap, but customers see two numbers from us.
+2. **Port (941) 241-0002 to Twilio** — one number for manual and automated
+   texting. Cleaner long-term; Grasshopper's phone features would need
+   rebuilding in Twilio.
+
 If Twilio (or any second provider) is ever added:
 
 - A phone number lives with one provider. (941) 241-0002 stays with
