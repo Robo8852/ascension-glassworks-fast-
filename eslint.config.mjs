@@ -1,4 +1,4 @@
-<img src="/logos/ascension-icon.svg" alt="Ascension Glassworks" class="w-full h-full object-contain"></img>import { defineConfig } from "eslint/config";
+import { defineConfig } from "eslint/config";
 import next from "eslint-config-next";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
