@@ -38,6 +38,11 @@ export default function PrivacyPage() {
             information we collect through this website, how we use it, and the choices
             you have.
           </p>
+          <p className="mt-3">
+            If you have questions about this policy or our messaging program, contact us
+            at Ascensionglassworksllc@gmail.com or (941) 241-0002. Ascension Glassworks
+            LLC is the sender of all text messages described in this policy.
+          </p>
 
           <section>
             <h2 className="text-xl md:text-2xl font-sans font-light tracking-wide text-brand-white mb-4">
