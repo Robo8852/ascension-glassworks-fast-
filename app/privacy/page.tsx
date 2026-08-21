@@ -39,7 +39,7 @@ export default function PrivacyPage() {
             you have.
           </p>
           <p className="mt-3">
-            If you have questions about this policy or our messaging program, contact us
+            If you have questions about this policy or our messaging practices, contact us
             at Ascensionglassworksllc@gmail.com or (941) 241-0002. Ascension Glassworks
             LLC is the sender of all text messages described in this policy.
           </p>
