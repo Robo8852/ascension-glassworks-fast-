@@ -1,7 +1,35 @@
 # SMS / A2P 10DLC compliance notes
 
-Context for enabling SMS on the Ascension Glassworks number via Twilio.
-Written 2026-08-12. Carrier rules change often — re-verify before filing.
+Context for enabling SMS on the Ascension Glassworks number.
+Written 2026-08-12, updated 2026-08-21. Carrier rules change often — re-verify
+before filing.
+
+## SMS provider: Grasshopper
+
+**Grasshopper is the SMS provider.** The business number (941) 241-0002 is a
+Grasshopper number, and the A2P 10DLC brand and campaign are being registered
+through Grasshopper's portal at https://nuui.us.grasshopper.com/CarrierRegistration
+(login: the Ascension Google account, ascensiongwfl@gmail.com). Grasshopper
+files into The Campaign Registry (TCR) on our behalf and collects the fees
+($15 one-time vetting, $1.50/month for under 6,000 texts/day).
+
+Twilio is **not** in use for SMS. The only Twilio reference in this repo is the
+Twilio delivery vendor mention in the privacy policy's service-provider
+language; the site itself sends email via Resend and nothing via Twilio.
+Earlier versions of this document assumed Twilio — that was never set up.
+
+If Twilio (or any second provider) is ever added:
+
+- A phone number lives with one provider. (941) 241-0002 stays with
+  Grasshopper unless it is ported out.
+- The LLC's 10DLC brand (keyed by EIN) must be registered **once** in TCR.
+  A second provider should import the existing TCR brand ID, not register the
+  EIN again — duplicate brands stall vetting. Get the brand ID from
+  Grasshopper first (may need a support ticket).
+- Running two campaigns under one brand is allowed; each carries its own
+  monthly fee.
+- The privacy policy says messages "originate from (941) 241-0002". Broaden
+  that sentence if any other number ever sends.
 
 ## What is already in place
 
