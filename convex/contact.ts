@@ -18,6 +18,8 @@ export const submitContact = mutation({
     ),
     preferredContact: v.union(v.literal('Phone'), v.literal('Email')),
     message: v.optional(v.string()),
+    smsConsent: v.optional(v.boolean()),
+    smsConsentText: v.optional(v.string()),
     honeypot: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
@@ -50,6 +52,8 @@ export const submitContact = mutation({
       service: args.service,
       preferredContact: args.preferredContact,
       message: args.message,
+      smsConsent: args.smsConsent ?? false,
+      smsConsentText: args.smsConsent ? args.smsConsentText : undefined,
     });
 
     await ctx.scheduler.runAfter(0, internal.email.sendContactEmails, {
@@ -60,6 +64,7 @@ export const submitContact = mutation({
       service: args.service,
       preferredContact: args.preferredContact,
       message: args.message,
+      smsConsent: args.smsConsent ?? false,
     });
 
     return id;

@@ -29,10 +29,21 @@ const contactSchema = z.object({
     message: 'Please choose a preferred contact method.',
   }),
   message: z.string().trim().max(1000, 'Please keep your message under 1000 characters.').optional(),
+  // Opt-in is deliberately optional: SMS consent is not a condition of
+  // requesting a consultation, and carriers reject bundled consent.
+  smsConsent: z.boolean().optional(),
   honeypot: z.string().optional(),
 });
 
 const MIN_SUBMIT_MS = 3000;
+
+// Exact disclosure filed with the A2P 10DLC campaign. The campaign covers
+// conversational/informational customer support messaging only — no marketing
+// or promotional SMS. This string must stay character-identical to the
+// Message Flow (CTA) and Terms and Conditions fields on the campaign, and is
+// stored verbatim with each submission as the consent record.
+export const SMS_CONSENT_TEXT =
+  'By checking this box, you agree to receive informational messages from Ascension Glassworks. Message frequency may vary. Message and data rates may apply. Reply HELP for help or STOP to opt out.';
 
 type ContactFormValues = z.infer<typeof contactSchema>;
 
@@ -70,6 +81,7 @@ export function ContactForm() {
       service: undefined,
       preferredContact: undefined,
       message: '',
+      smsConsent: false,
       honeypot: '',
     },
   });
@@ -102,6 +114,8 @@ export function ContactForm() {
         service: values.service,
         preferredContact: values.preferredContact,
         message: values.message || undefined,
+        smsConsent: Boolean(values.smsConsent),
+        smsConsentText: values.smsConsent ? SMS_CONSENT_TEXT : undefined,
       });
       trackEvent('generate_lead', {
         form_name: 'contact',
@@ -362,6 +376,36 @@ export function ContactForm() {
         </p>
       )}
 
+      <div className="border border-white/10 bg-white/[0.02] p-5 max-w-2xl">
+        <label htmlFor="contact-sms-consent" className="flex items-start gap-3 cursor-pointer group">
+          <input
+            id="contact-sms-consent"
+            type="checkbox"
+            className="appearance-none shrink-0 w-4 h-4 mt-0.5 rounded-none border border-white/30 checked:border-gold checked:bg-gold bg-no-repeat bg-center focus:outline-none focus:ring-1 focus:ring-gold/40 transition-colors cursor-pointer"
+            style={{
+              backgroundImage:
+                "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 10' fill='none' stroke='%230A0A0A' stroke-width='2'><path d='M1 5l3.5 3.5L11 1.5'/></svg>\")",
+              backgroundSize: '10px 10px',
+            }}
+            {...register('smsConsent')}
+          />
+          <span className="text-[11px] leading-relaxed font-light text-white/60 group-hover:text-white/75 transition-colors">
+            {SMS_CONSENT_TEXT}
+          </span>
+        </label>
+        <p className="text-[11px] leading-relaxed font-light text-white/40 mt-3 pl-7">
+          Consent is not a condition of purchase, and this box is optional — we will still
+          reply using the contact method you selected above. See our{' '}
+          <Link
+            href="/privacy"
+            className="text-gold underline underline-offset-2 hover:text-gold/80 transition-colors"
+          >
+            Privacy Policy
+          </Link>
+          .
+        </p>
+      </div>
+
       <div className="pt-2">
         <button
           type="submit"
@@ -370,22 +414,6 @@ export function ContactForm() {
         >
           {isSubmitting ? 'Sending...' : 'Send Message'}
         </button>
-        <p className="text-[11px] leading-relaxed font-light text-white/50 mt-6 max-w-2xl">
-          <span className="text-white/70">Disclaimer:</span> By providing my contact
-          information to Ascension Glassworks, I acknowledge and give my explicit consent
-          to be contacted via SMS and receive emails for various purposes, which may
-          include marketing and promotional content. Message and data rates may apply.
-          Message frequency may vary. Reply <span className="text-white/70">STOP</span> to
-          opt-out. Reply <span className="text-white/70">HELP</span> for more information.
-          Refer to our{' '}
-          <Link
-            href="/privacy"
-            className="text-gold underline underline-offset-2 hover:text-gold/80 transition-colors"
-          >
-            Privacy Policy
-          </Link>{' '}
-          for more information.
-        </p>
       </div>
     </form>
   );

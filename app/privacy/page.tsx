@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   },
 };
 
-const LAST_UPDATED = 'August 20, 2026';
+const LAST_UPDATED = 'August 21, 2026';
 
 export default function PrivacyPage() {
   return (
@@ -70,11 +70,12 @@ export default function PrivacyPage() {
               <li>Prepare estimates and coordinate installation and service work</li>
               <li>
                 Send appointment reminders, project updates, and follow-up communication
-                via email and SMS
+                about your inquiry by email and SMS
               </li>
               <li>
-                Share information about our services, promotions, and seasonal or
-                hurricane-season readiness offers
+                Send information about our services, promotions, and seasonal or
+                hurricane-season readiness offers <strong className="font-normal text-brand-white">by email only</strong> — we
+                do not send marketing or promotional text messages
               </li>
               <li>Improve our website and services</li>
               <li>Comply with legal, permitting, and warranty obligations</li>
@@ -86,9 +87,24 @@ export default function PrivacyPage() {
               SMS &amp; Email Communications
             </h2>
             <p>
-              By providing your contact information, you acknowledge and give explicit
-              consent to be contacted via SMS and to receive emails for purposes that may
-              include scheduling, project updates, and marketing or promotional content.
+              Text messages are strictly informational customer-service messages related
+              to an inquiry you submitted to us — scheduling, appointment confirmations,
+              project updates, and replies to your questions. We do not send marketing or
+              promotional text messages.
+            </p>
+            <p className="mt-3">
+              You opt in by checking the SMS consent box on our{' '}
+              <Link href="/contact" className="text-gold hover:text-gold/80 underline">
+                contact form
+              </Link>
+              . The box is unchecked by default, consent is not a condition of purchase,
+              and we will still respond by your chosen contact method if you leave it
+              unchecked. The disclosure shown at opt-in reads:
+            </p>
+            <p className="mt-3 border-l-2 border-gold/40 pl-4 text-brand-white/70 italic">
+              By checking this box, you agree to receive informational messages from
+              Ascension Glassworks. Message frequency may vary. Message and data rates may
+              apply. Reply HELP for help or STOP to opt out.
             </p>
             <ul className="list-disc list-outside pl-5 mt-3 space-y-1 text-brand-white/60">
               <li>Message and data rates may apply</li>
@@ -98,12 +114,13 @@ export default function PrivacyPage() {
                 at any time
               </li>
               <li>
-                Reply <span className="text-gold">HELP</span> for more information
+                Reply <span className="text-gold">HELP</span> for help
               </li>
             </ul>
             <p className="mt-3">
-              You may also unsubscribe from email communications by clicking the
-              &ldquo;unsubscribe&rdquo; link included in our emails.
+              Email is separate from SMS. Promotional and marketing content is sent by
+              email only and never by text message, and you may unsubscribe at any time
+              by clicking the &ldquo;unsubscribe&rdquo; link included in our emails.
             </p>
             <p className="mt-3 text-brand-white">
               We do not transfer or share consumer data, including mobile numbers, SMS
@@ -204,11 +221,13 @@ export default function PrivacyPage() {
               >
                 Ascensionglassworksllc@gmail.com
               </a>
-              . You may also reach us through our{' '}
+              . You may also reach us through our contact page at{' '}
               <Link href="/contact" className="text-gold hover:text-gold/80 underline">
-                contact form
+                https://ascensionglassworks.com/contact
               </Link>{' '}
-              to exercise any of the rights described above.
+              to exercise any of the rights described above. Ascension Glassworks LLC is
+              the sender of all SMS messages described in this policy, and messages
+              originate from (941) 241-0002.
             </p>
           </section>
         </div>

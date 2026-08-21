@@ -15,5 +15,10 @@ export default defineSchema({
     ),
     preferredContact: v.union(v.literal('Phone'), v.literal('Email')),
     message: v.optional(v.string()),
+    // A2P 10DLC consent record. smsConsentText stores the disclosure exactly as
+    // it was displayed at opt-in, so the proof survives future copy changes.
+    // Both optional: rows written before the checkbox existed have neither.
+    smsConsent: v.optional(v.boolean()),
+    smsConsentText: v.optional(v.string()),
   }).index('by_email', ['email']),
 });

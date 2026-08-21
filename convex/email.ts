@@ -54,6 +54,7 @@ export const sendContactEmails = internalAction({
     service: v.string(),
     preferredContact: v.string(),
     message: v.optional(v.string()),
+    smsConsent: v.optional(v.boolean()),
   },
   handler: async (_ctx, args) => {
     const safeName = escapeHtml(args.name);
@@ -74,6 +75,7 @@ export const sendContactEmails = internalAction({
           <tr><td style="padding: 8px; font-weight: 600;">Location</td><td style="padding: 8px;">${safeLocation}</td></tr>
           <tr><td style="padding: 8px; font-weight: 600;">Service</td><td style="padding: 8px;">${safeService}</td></tr>
           <tr><td style="padding: 8px; font-weight: 600;">Preferred contact</td><td style="padding: 8px;">${safePreferred}</td></tr>
+          <tr><td style="padding: 8px; font-weight: 600;">SMS opt-in</td><td style="padding: 8px;">${args.smsConsent ? 'YES — consented to informational SMS' : 'No — do not text this lead'}</td></tr>
           ${safeMessage ? `<tr><td style="padding: 8px; font-weight: 600; vertical-align: top;">Message</td><td style="padding: 8px; white-space: pre-wrap;">${safeMessage}</td></tr>` : ''}
         </table>
       </div>
