@@ -186,3 +186,63 @@ Note this is a binding commitment, not just review wording: it rules out
 passing phone numbers or consent records to any advertising or lead-resale
 platform. Sharing with delivery vendors acting on our behalf (Twilio, Resend)
 is still fine and is covered by the surrounding service-provider language.
+
+## Reviewer passes 3–8, 2026-08-21 — driven live via Chrome DevTools
+
+All passes ran against the deployed site with the campaign fields filled from
+the "paste verbatim" section above. Final state: **Confidence Level: Fair**,
+one card remaining (Privacy Policy contact method — see below). Every other
+card cleared.
+
+| Pass | Confidence | Cards | What changed before the pass |
+| --- | --- | --- | --- |
+| 3 | Low | Embedded Link: uncheck the box | New informational samples had no URL |
+| 4 | Low | Sample 2: add brand name | Embedded link re-checked (we do send links) |
+| 5 | Fair | Privacy contact; Terms: describe message types + frequency/rates/HELP/STOP | Brand name in sample 2; URL in sample 1 |
+| 6 | Fair | Privacy contact; CTA: add "View our Privacy Policy and Terms & Conditions: URL"; Opt-in msg: "Message and data rates may apply" | Plain-text Messaging Terms paragraph + Company/Phone/Email block added to policy |
+| 7 | Fair | Description: could not validate (recycled noise); Privacy contact | Contact sentence added to policy intro; CTA + opt-in fields updated |
+| 8 | Fair | Privacy contact only (template now adds "[mailing address]") | Wording matched to "messaging practices"; `?v=2` cache-bust test (reverted) |
+
+### Form-field values that cleared their cards (use these next time)
+
+- **Sample 1:** `Hi {name}, this is Ascension Glassworks confirming your window consultation on {date} at {time}. Details: https://www.ascensionglassworks.com/contact. Reply HELP for help or STOP to opt out.`
+- **Sample 2:** `Hi {name}, this is Ascension Glassworks. Your impact window order has arrived and we are ready to schedule installation. Reply with a day that works. Reply HELP for help or STOP to opt out.`
+- **Opt-in confirmation:** `Thank you for opting in to receive messages from Ascension Glassworks. Message frequency varies. Message and data rates may apply. Reply HELP for help. Reply STOP to cancel.`
+- **Opt-in process description:** the Message Flow text above, with `www.` URLs, ending in `View our Privacy Policy and Terms & Conditions: https://www.ascensionglassworks.com/privacy`
+- Keep **Embedded link** checked — samples must then contain a URL, and the brand name must appear in every sample.
+
+### What the reviewer actually needs from the privacy page
+
+It is a literal-string scanner. Text already present but split across `<a>`,
+`<span>`, or `<Link>` tags does not count. The Terms card cleared only after a
+single contiguous plain-text paragraph was added (the "Messaging Terms and
+Conditions" block in `app/privacy/page.tsx`). Put the required sentences in
+plain `<p>` text, not in styled fragments.
+
+### The card that never cleared: "Privacy Policy — missing consumer contact method"
+
+Persisted across six passes while the policy stated the email and phone in
+four places, including the reviewer's own template sentence verbatim. Ruled
+out: page not fetchable (serves 200 to any UA), truncation (contact text at
+22% of HTML), caching (reviewer noticed a `?v=2` URL change instantly). The
+reviewer reads the page and accepts the same paragraph for the Terms check.
+Unverified guesses: it wants a **mailing address** (appeared in its template on
+pass 8), or discounts a **Gmail** sender address. Treat this card as noise
+unless a mailing address is added and clears it.
+
+### Mechanics for driving the portal with Chrome DevTools
+
+- Chrome 136+ ignores `--remote-debugging-port` on the real profile. Instead:
+  open `chrome://inspect/#remote-debugging` in the Ascension profile
+  (`Profile 15`), tick "Allow remote debugging", wait for "Server running at
+  127.0.0.1:9222", then run the MCP server with `--autoConnect`.
+- The privacy "Verify With AI" button silently does nothing until the
+  acknowledgment checkbox above it is ticked.
+- **Review Application** runs form validation → `AiFullCampaignValidator()` →
+  shows `#modalAiReview`. Nothing is submitted unless `#ai-submit` ("Ignore &
+  Submit Application to Carrier") is clicked. "Edit Form" (`#ai-cancel`)
+  closes it safely. Cards are `#ai-field-errors li`; confidence is
+  `#aiConfidenceMsg`. Three outcomes exist in the code: Low, Fair, and a
+  success state worded "did not find critical issues".
+- Vercel skipped one of three back-to-back pushes (no deployment created);
+  an empty commit retriggered it.
