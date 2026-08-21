@@ -117,6 +117,19 @@ export default function PrivacyPage() {
                 Reply <span className="text-gold">HELP</span> for help
               </li>
             </ul>
+            <h3 className="text-lg font-sans font-light tracking-wide text-brand-white mt-6 mb-2">
+              Ascension Glassworks LLC Messaging Terms and Conditions
+            </h3>
+            <p>
+              The messaging program consists of informational customer-service text
+              messages sent in response to your inquiry. You will receive only the
+              following message types: appointment reminders, appointment confirmations,
+              scheduling updates, project and installation status updates, and
+              service-related notifications. Message frequency may vary. Message and data
+              rates may apply. Reply HELP for help or STOP to opt out. Carriers are not
+              liable for delayed or undelivered messages. For questions, contact us at
+              Ascensionglassworksllc@gmail.com or call (941) 241-0002.
+            </p>
             <p className="mt-3">
               Email is separate from SMS. Promotional and marketing content is sent by
               email only and never by text message, and you may unsubscribe at any time
@@ -229,6 +242,16 @@ export default function PrivacyPage() {
               the sender of all SMS messages described in this policy, and messages
               originate from (941) 241-0002.
             </p>
+            <p className="mt-3">
+              For questions, contact us at Ascensionglassworksllc@gmail.com or call (941)
+              241-0002.
+            </p>
+            <ul className="list-none mt-3 space-y-1 text-brand-white/80">
+              <li>Company: Ascension Glassworks LLC</li>
+              <li>Phone: (941) 241-0002</li>
+              <li>Email: Ascensionglassworksllc@gmail.com</li>
+              <li>Website: https://ascensionglassworks.com/contact</li>
+            </ul>
           </section>
         </div>
       </section>
