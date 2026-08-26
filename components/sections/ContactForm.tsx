@@ -401,6 +401,13 @@ export function ContactForm() {
             className="text-gold underline underline-offset-2 hover:text-gold/80 transition-colors"
           >
             Privacy Policy
+          </Link>{' '}
+          and{' '}
+          <Link
+            href="/sms-terms"
+            className="text-gold underline underline-offset-2 hover:text-gold/80 transition-colors"
+          >
+            SMS Terms and Conditions
           </Link>
           .
         </p>

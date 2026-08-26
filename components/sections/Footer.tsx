@@ -59,6 +59,13 @@ export function Footer() {
           >
             Privacy Policy
           </Link>
+          {' · '}
+          <Link
+            href="/sms-terms"
+            className="text-white/70 underline underline-offset-2 hover:text-gold transition-colors"
+          >
+            SMS Terms
+          </Link>
         </p>
       </div>
     </footer>
