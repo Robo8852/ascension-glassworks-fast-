@@ -122,13 +122,17 @@ their guide explicitly directs you to do this after a decline. Dave suspects a
 brand-new registration form is required rather than editing the old one;
 confirm with support before spending another $15.
 
-## Still blocked on Dave
+## Nothing is blocked on Dave
 
-- **Checklist item 4 / 13 — the mailing address.** The Articles of
-  Organization PDF in `C:\Users\daver\Downloads\` is a **scanned image with no
-  text layer**, so the address could not be extracted. Ask Dave directly, or
-  get permission to OCR it. Item 4 (adding the address to the site) cannot ship
-  without this.
+Section A is **complete and live on production** (commit `e33b2d8`): both
+consent checkboxes, the expanded consent text, Grasshopper's verbatim terms
+block on `/privacy` and `/sms-terms`, and the support email unified to
+`ascensiongwfl@gmail.com`. All verified against the live `www` host.
+
+Checklist items **4, 12 and 13 are deferred by decision** — mailing address,
+Workspace email, and the address choice. None was named by the carrier, so they
+are contingency work to revisit **only if this resubmission is declined again**
+and the new reason points at them. Do not raise them again before then.
 
 ## Decisions already made — do not relitigate
 

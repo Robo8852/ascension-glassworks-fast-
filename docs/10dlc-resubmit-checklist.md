@@ -99,7 +99,8 @@ days** of carrier review per attempt. That is why we fix everything in one pass.
 
 ## C. Business decisions
 
-- [ ] **12. Google Workspace email on the domain — DEFERRED, not doing.**
+- [ ] **12. Google Workspace email on the domain — DEFERRED. Only if declined
+  again.**
   The guide wants the business name consistent across registration, website,
   and contact email domain, so a Gmail address is technically the weakest link
   in the submission. Deliberately skipped: we have had approvals at other
