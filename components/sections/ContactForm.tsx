@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { type ChangeEvent, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -9,6 +9,7 @@ import { useMutation } from 'convex/react';
 import { ConvexError } from 'convex/values';
 import { api } from '@/convex/_generated/api';
 import { trackEvent } from '@/lib/analytics';
+import { SMS_CONSENT_TEXT, SMS_OPT_OUT_TEXT } from '@/lib/sms-consent';
 
 const PHONE_RE = /^[\d\s().+-]{10,}$/;
 
@@ -31,19 +32,21 @@ const contactSchema = z.object({
   message: z.string().trim().max(1000, 'Please keep your message under 1000 characters.').optional(),
   // Opt-in is deliberately optional: SMS consent is not a condition of
   // requesting a consultation, and carriers reject bundled consent.
+  // smsOptOut is the explicit "No" choice. Neither box is checked by default,
+  // both are optional, and checking one clears the other.
   smsConsent: z.boolean().optional(),
+  smsOptOut: z.boolean().optional(),
   honeypot: z.string().optional(),
 });
 
 const MIN_SUBMIT_MS = 3000;
 
-// Exact disclosure filed with the A2P 10DLC campaign. The campaign covers
-// conversational/informational customer support messaging only — no marketing
-// or promotional SMS. This string must stay character-identical to the
-// Message Flow (CTA) and Terms and Conditions fields on the campaign, and is
-// stored verbatim with each submission as the consent record.
-export const SMS_CONSENT_TEXT =
-  'By checking this box, you agree to receive informational messages from Ascension Glassworks. Message frequency may vary. Message and data rates may apply. Reply HELP for help or STOP to opt out.';
+// The consent and decline disclosures live in lib/sms-consent.ts so the
+// server-rendered /privacy and /sms-terms pages can quote the identical
+// strings — a server component cannot read a plain value out of a 'use client'
+// module. SMS_CONSENT_TEXT is re-exported here because this component is where
+// it is captured, verbatim, as each lead's consent record.
+export { SMS_CONSENT_TEXT, SMS_OPT_OUT_TEXT };
 
 type ContactFormValues = z.infer<typeof contactSchema>;
 
@@ -70,6 +73,7 @@ export function ContactForm() {
     register,
     handleSubmit,
     reset,
+    setValue,
     formState: { errors, isSubmitting },
   } = useForm<ContactFormValues>({
     resolver: zodResolver(contactSchema),
@@ -82,6 +86,7 @@ export function ContactForm() {
       preferredContact: undefined,
       message: '',
       smsConsent: false,
+      smsOptOut: false,
       honeypot: '',
     },
   });
@@ -115,6 +120,7 @@ export function ContactForm() {
         preferredContact: values.preferredContact,
         message: values.message || undefined,
         smsConsent: Boolean(values.smsConsent),
+        smsOptOut: Boolean(values.smsOptOut),
         smsConsentText: values.smsConsent ? SMS_CONSENT_TEXT : undefined,
       });
       trackEvent('generate_lead', {
@@ -387,15 +393,46 @@ export function ContactForm() {
                 "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 10' fill='none' stroke='%230A0A0A' stroke-width='2'><path d='M1 5l3.5 3.5L11 1.5'/></svg>\")",
               backgroundSize: '10px 10px',
             }}
-            {...register('smsConsent')}
+            {...register('smsConsent', {
+              onChange: (event: ChangeEvent<HTMLInputElement>) => {
+                if (event.target.checked) {
+                  setValue('smsOptOut', false);
+                }
+              },
+            })}
           />
           <span className="text-[11px] leading-relaxed font-light text-white/60 group-hover:text-white/75 transition-colors">
             {SMS_CONSENT_TEXT}
           </span>
         </label>
+        <label
+          htmlFor="contact-sms-opt-out"
+          className="flex items-start gap-3 cursor-pointer group mt-4"
+        >
+          <input
+            id="contact-sms-opt-out"
+            type="checkbox"
+            className="appearance-none shrink-0 w-4 h-4 mt-0.5 rounded-none border border-white/30 checked:border-gold checked:bg-gold bg-no-repeat bg-center focus:outline-none focus:ring-1 focus:ring-gold/40 transition-colors cursor-pointer"
+            style={{
+              backgroundImage:
+                "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 10' fill='none' stroke='%230A0A0A' stroke-width='2'><path d='M1 5l3.5 3.5L11 1.5'/></svg>\")",
+              backgroundSize: '10px 10px',
+            }}
+            {...register('smsOptOut', {
+              onChange: (event: ChangeEvent<HTMLInputElement>) => {
+                if (event.target.checked) {
+                  setValue('smsConsent', false);
+                }
+              },
+            })}
+          />
+          <span className="text-[11px] leading-relaxed font-light text-white/60 group-hover:text-white/75 transition-colors">
+            {SMS_OPT_OUT_TEXT}
+          </span>
+        </label>
         <p className="text-[11px] leading-relaxed font-light text-white/40 mt-3 pl-7">
-          Consent is not a condition of purchase, and this box is optional — we will still
-          reply using the contact method you selected above. See our{' '}
+          Consent is not a condition of purchase, and both boxes are optional — we will
+          still reply using the contact method you selected above. See our{' '}
           <Link
             href="/privacy"
             className="text-gold underline underline-offset-2 hover:text-gold/80 transition-colors"

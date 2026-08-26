@@ -3,6 +3,8 @@ import Link from 'next/link';
 import { Navigation } from '@/components/sections/Navigation';
 import { Footer } from '@/components/sections/Footer';
 import { SectionHeadline } from '@/components/SectionHeadline';
+import { SmsCarrierTerms } from '@/components/SmsCarrierTerms';
+import { SMS_CONSENT_TEXT, SMS_OPT_OUT_TEXT } from '@/lib/sms-consent';
 
 export const metadata: Metadata = {
   title: 'Privacy Policy',
@@ -40,7 +42,7 @@ export default function PrivacyPage() {
           </p>
           <p className="mt-3">
             If you have questions about this policy or our messaging practices, contact us
-            at Ascensionglassworksllc@gmail.com or (941) 241-0002. Ascension Glassworks
+            at ascensiongwfl@gmail.com or (941) 241-0002. Ascension Glassworks
             LLC is the sender of all text messages described in this policy.
           </p>
 
@@ -107,9 +109,14 @@ export default function PrivacyPage() {
               unchecked. The disclosure shown at opt-in reads:
             </p>
             <p className="mt-3 border-l-2 border-gold/40 pl-4 text-brand-white/70 italic">
-              By checking this box, you agree to receive informational messages from
-              Ascension Glassworks. Message frequency may vary. Message and data rates may
-              apply. Reply HELP for help or STOP to opt out.
+              {SMS_CONSENT_TEXT}
+            </p>
+            <p className="mt-3">
+              A second box beneath it, also unchecked by default, lets you decline
+              outright. It reads:
+            </p>
+            <p className="mt-3 border-l-2 border-gold/40 pl-4 text-brand-white/70 italic">
+              {SMS_OPT_OUT_TEXT}
             </p>
             <ul className="list-disc list-outside pl-5 mt-3 space-y-1 text-brand-white/60">
               <li>Message and data rates may apply</li>
@@ -133,7 +140,7 @@ export default function PrivacyPage() {
               service-related notifications. Message frequency may vary. Message and data
               rates may apply. Reply HELP for help or STOP to opt out. Carriers are not
               liable for delayed or undelivered messages. For questions, contact us at
-              Ascensionglassworksllc@gmail.com or call (941) 241-0002.
+              ascensiongwfl@gmail.com or call (941) 241-0002.
             </p>
             <p className="mt-3">
               Email is separate from SMS. Promotional and marketing content is sent by
@@ -146,6 +153,7 @@ export default function PrivacyPage() {
               strictly necessary to provide the messaging service, and never for
               marketing or independent use by third parties.
             </p>
+            <SmsCarrierTerms className="mt-6" />
           </section>
 
           <section>
@@ -234,10 +242,10 @@ export default function PrivacyPage() {
               </a>{' '}
               or email us at{' '}
               <a
-                href="mailto:Ascensionglassworksllc@gmail.com"
+                href="mailto:ascensiongwfl@gmail.com"
                 className="text-gold hover:text-gold/80 underline"
               >
-                Ascensionglassworksllc@gmail.com
+                ascensiongwfl@gmail.com
               </a>
               . You may also reach us through our contact page at{' '}
               <Link href="/contact" className="text-gold hover:text-gold/80 underline">
@@ -248,13 +256,13 @@ export default function PrivacyPage() {
               originate from (941) 241-0002.
             </p>
             <p className="mt-3">
-              For questions, contact us at Ascensionglassworksllc@gmail.com or call (941)
+              For questions, contact us at ascensiongwfl@gmail.com or call (941)
               241-0002.
             </p>
             <ul className="list-none mt-3 space-y-1 text-brand-white/80">
               <li>Company: Ascension Glassworks LLC</li>
               <li>Phone: (941) 241-0002</li>
-              <li>Email: Ascensionglassworksllc@gmail.com</li>
+              <li>Email: ascensiongwfl@gmail.com</li>
               <li>Website: https://ascensionglassworks.com/contact</li>
             </ul>
           </section>

@@ -190,12 +190,19 @@ one without the others.
 **Message Flow (CTA)**
 
 > Consumers opt in at https://ascensionglassworks.com/contact by submitting our
-> contact form and checking the SMS consent checkbox, which is unchecked by
-> default. Consent is not a condition of purchase. The checkbox reads: "By
-> checking this box, you agree to receive informational messages from Ascension
-> Glassworks. Message frequency may vary. Message and data rates may apply.
-> Reply HELP for help or STOP to opt out." Our privacy policy is linked directly
-> beneath the checkbox at https://ascensionglassworks.com/privacy.
+> contact form and checking the SMS consent checkbox. Two checkboxes are shown
+> and neither is checked by default: an opt-in box and an opt-out box, and
+> checking one clears the other. Consent is not a condition of purchase. The
+> opt-in checkbox reads: "Yes, I consent to receive informational text messages
+> from Ascension Glassworks LLC at (941) 241-0002, including appointment
+> reminders and confirmations, scheduling updates, project and installation
+> status updates, and replies to my questions. Message frequency may vary.
+> Message and data rates may apply. Reply HELP for help or STOP to opt out. We
+> never share your mobile opt-in information with anyone." The second checkbox
+> reads: "No, I do not want to receive any text messages from Ascension
+> Glassworks." Our privacy policy and SMS terms are linked directly beneath the
+> checkboxes at https://ascensionglassworks.com/privacy and
+> https://ascensionglassworks.com/sms-terms.
 
 **Terms and Conditions**
 
@@ -206,7 +213,7 @@ one without the others.
 > not liable for delayed or undelivered messages. Mobile opt-in data and consent
 > are not shared with third parties for marketing purposes. For questions,
 > contact Ascension Glassworks LLC at (941) 241-0002 or
-> Ascensionglassworksllc@gmail.com. Privacy Policy:
+> ascensiongwfl@gmail.com. Privacy Policy:
 > https://ascensionglassworks.com/privacy
 
 **Sample messages** — keep every sample informational. Any sample that reads as

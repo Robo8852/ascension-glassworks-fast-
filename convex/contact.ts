@@ -19,6 +19,7 @@ export const submitContact = mutation({
     preferredContact: v.union(v.literal('Phone'), v.literal('Email')),
     message: v.optional(v.string()),
     smsConsent: v.optional(v.boolean()),
+    smsOptOut: v.optional(v.boolean()),
     smsConsentText: v.optional(v.string()),
     honeypot: v.optional(v.string()),
   },
@@ -53,6 +54,7 @@ export const submitContact = mutation({
       preferredContact: args.preferredContact,
       message: args.message,
       smsConsent: args.smsConsent ?? false,
+      smsOptOut: args.smsOptOut ?? false,
       smsConsentText: args.smsConsent ? args.smsConsentText : undefined,
     });
 
@@ -65,6 +67,7 @@ export const submitContact = mutation({
       preferredContact: args.preferredContact,
       message: args.message,
       smsConsent: args.smsConsent ?? false,
+      smsOptOut: args.smsOptOut ?? false,
     });
 
     return id;

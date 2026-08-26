@@ -3,7 +3,7 @@ import { v } from 'convex/values';
 
 const FROM_ADDRESS = 'Ascension Glassworks <leads@ascensionglassworks.com>';
 const INTERNAL_RECIPIENTS = [
-  'Ascensionglassworksllc@gmail.com',
+  'ascensiongwfl@gmail.com',
   'leoreyes@costadelsolweb.com',
 ];
 
@@ -55,6 +55,7 @@ export const sendContactEmails = internalAction({
     preferredContact: v.string(),
     message: v.optional(v.string()),
     smsConsent: v.optional(v.boolean()),
+    smsOptOut: v.optional(v.boolean()),
   },
   handler: async (_ctx, args) => {
     const safeName = escapeHtml(args.name);
@@ -76,6 +77,7 @@ export const sendContactEmails = internalAction({
           <tr><td style="padding: 8px; font-weight: 600;">Service</td><td style="padding: 8px;">${safeService}</td></tr>
           <tr><td style="padding: 8px; font-weight: 600;">Preferred contact</td><td style="padding: 8px;">${safePreferred}</td></tr>
           <tr><td style="padding: 8px; font-weight: 600;">SMS opt-in</td><td style="padding: 8px;">${args.smsConsent ? 'YES — consented to informational SMS' : 'No — do not text this lead'}</td></tr>
+          <tr><td style="padding: 8px; font-weight: 600;">SMS opt-out</td><td style="padding: 8px;">${args.smsOptOut ? 'YES — explicitly declined all text messages' : 'No — did not check the opt-out box'}</td></tr>
           ${safeMessage ? `<tr><td style="padding: 8px; font-weight: 600; vertical-align: top;">Message</td><td style="padding: 8px; white-space: pre-wrap;">${safeMessage}</td></tr>` : ''}
         </table>
       </div>

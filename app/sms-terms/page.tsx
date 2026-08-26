@@ -3,6 +3,8 @@ import Link from 'next/link';
 import { Navigation } from '@/components/sections/Navigation';
 import { Footer } from '@/components/sections/Footer';
 import { SectionHeadline } from '@/components/SectionHeadline';
+import { SmsCarrierTerms } from '@/components/SmsCarrierTerms';
+import { SMS_CONSENT_TEXT, SMS_OPT_OUT_TEXT } from '@/lib/sms-consent';
 
 export const metadata: Metadata = {
   title: 'SMS Terms and Conditions',
@@ -37,7 +39,7 @@ export default function SmsTermsPage() {
             &ldquo;we,&rdquo; &ldquo;us,&rdquo; or &ldquo;our&rdquo;). Ascension
             Glassworks LLC is the sender of all text messages described here, and
             messages originate from (941) 241-0002. If you have questions about this
-            policy or our SMS program, contact us at Ascensionglassworksllc@gmail.com or
+            policy or our SMS program, contact us at ascensiongwfl@gmail.com or
             (941) 241-0002.
           </p>
 
@@ -68,9 +70,13 @@ export default function SmsTermsPage() {
               reads:
             </p>
             <p className="mt-3 border-l-2 border-gold/40 pl-4 text-brand-white/70 italic">
-              By checking this box, you agree to receive informational messages from
-              Ascension Glassworks. Message frequency may vary. Message and data rates
-              may apply. Reply HELP for help or STOP to opt out.
+              {SMS_CONSENT_TEXT}
+            </p>
+            <p className="mt-3">
+              A second, equally unchecked box directly beneath it reads:
+            </p>
+            <p className="mt-3 border-l-2 border-gold/40 pl-4 text-brand-white/70 italic">
+              {SMS_OPT_OUT_TEXT}
             </p>
           </section>
 
@@ -104,7 +110,7 @@ export default function SmsTermsPage() {
             </h2>
             <p>
               Reply HELP to any message for assistance. You can also reach us directly at
-              Ascensionglassworksllc@gmail.com or (941) 241-0002.
+              ascensiongwfl@gmail.com or (941) 241-0002.
             </p>
           </section>
 
@@ -150,16 +156,28 @@ export default function SmsTermsPage() {
 
           <section>
             <h2 className="text-xl md:text-2xl font-sans font-light tracking-wide text-brand-white mb-4">
+              9. Carrier-required terms
+            </h2>
+            <p>
+              The following data sharing statement and numbered terms are published
+              exactly as our messaging provider requires them, and govern this program
+              alongside the sections above.
+            </p>
+            <SmsCarrierTerms className="mt-4" />
+          </section>
+
+          <section>
+            <h2 className="text-xl md:text-2xl font-sans font-light tracking-wide text-brand-white mb-4">
               Contact Us
             </h2>
             <p>
               If you have questions about this policy or our SMS program, contact us at
-              Ascensionglassworksllc@gmail.com or (941) 241-0002.
+              ascensiongwfl@gmail.com or (941) 241-0002.
             </p>
             <ul className="list-none mt-3 space-y-1 text-brand-white/80">
               <li>Company: Ascension Glassworks LLC</li>
               <li>Phone: (941) 241-0002</li>
-              <li>Email: Ascensionglassworksllc@gmail.com</li>
+              <li>Email: ascensiongwfl@gmail.com</li>
               <li>Website: https://www.ascensionglassworks.com/contact</li>
             </ul>
           </section>
