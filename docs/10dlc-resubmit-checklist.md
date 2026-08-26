@@ -75,6 +75,10 @@ days** of carrier review per attempt. That is why we fix everything in one pass.
 - [ ] **6. Upload the Evidence screenshot** — a screenshot of `/contact`
   showing the consent checkbox and its disclosure. The field read
   `No file chosen` on the submitted registration.
+  **Screenshot captured 2026-08-26 → `docs/evidence/contact-sms-consent.png`**
+  (1920×889; shows both boxes unchecked, the full disclosure, the "consent is
+  not a condition of purchase" line, and the Privacy Policy / SMS Terms links).
+  Still needs uploading to the portal.
 
 - [ ] **7. Save the campaign field text.** Our drafted Description and opt-in
   description were **never persisted** — only "Edit Form" was ever clicked, so
