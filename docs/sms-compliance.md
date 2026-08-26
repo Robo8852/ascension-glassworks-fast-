@@ -310,3 +310,48 @@ unless a mailing address is added and clears it.
   success state worded "did not find critical issues".
 - Vercel skipped one of three back-to-back pushes (no deployment created);
   an empty commit retriggered it.
+
+## Scanner passes, 2026-08-26 — the Help Messaging contradiction
+
+Recorded so nobody burns another six passes on this. The pre-submission
+scanner is **advisory only, does not gate submission, and is not sent to the
+carrier.** It contradicted itself four times in a row on a single field.
+
+Context: the campaign had just been rebuilt after the 2026-08-24 decline. Every
+real defect was already fixed. The only thing standing between us and a clean
+review was one card on **Help Messaging**.
+
+| Help Messaging ending | Confidence | What the card said |
+|---|---|---|
+| `Reply STOP to opt out.` | **Low** | "contains an opt-out keyword, but it is not just the allowed stop keyword… the output should be just STOP and nothing else" |
+| `Reply STOP.` — exactly one keyword, nothing else | **Low** | "Use a message that contains only a single approved opt-out keyword, for example: STOP." |
+| *(opt-out sentence removed entirely)* | **Low** | "does not meet the requirement to contain only one approved opt-out keyword" |
+| `Reply STOP` — identical, minus the trailing period | **Fair** | "Update the ending to a clear opt-out instruction using only an approved keyword, for example: **'Reply STOP to opt out.'**" |
+
+Read the last row against the first. **It ended up recommending, verbatim, the
+exact text it had rejected as Low three passes earlier.** Rows 2 and 3 are also
+mutually exclusive: row 2 had exactly one approved keyword and was told to use
+exactly one keyword.
+
+Resolution: set it back to `Reply STOP to opt out.` — what the scanner finally
+asked for, and independently the CTIA-standard HELP-reply ending (program name,
+contact info, opt-out instruction). Result: **Confidence Level: Fair**, Help
+Messaging card gone.
+
+### What this means operationally
+
+- **Do not tune copy to satisfy this scanner.** It is a literal-string matcher
+  whose verdicts are not stable across runs of identical input. Write text that
+  satisfies the *carrier* rules and CTIA guidance, then stop.
+- **Fair is the practical ceiling.** Two separate sessions (2026-08-21 and
+  2026-08-26) capped at Fair. Note the 2026-08-24 decline happened to a
+  submission that also scored Fair — and it was declined for opt-in and Terms
+  and Conditions, **neither of which this scanner ever flagged.** The score has
+  no demonstrated predictive value.
+- **"Could not validate content." is a fetch failure, not a defect.** It
+  appeared on Description in this pass and on Privacy Policy in the last one.
+  Same class as the phantom "missing consumer contact method" card documented
+  above. Ignore it.
+- Each Review Application run is free; only `#ai-submit` costs $15. But every
+  Edit Form round trip risks the form state, and **nothing is written to the
+  server until submission**, so keep the loop short.
