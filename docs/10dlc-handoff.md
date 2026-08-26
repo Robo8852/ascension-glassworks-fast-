@@ -1,5 +1,10 @@
 # Handoff — Section B: Grasshopper portal work
 
+> **SUPERSEDED 2026-08-26 — read `docs/10dlc-status.md` first.** Section B was
+> worked to completion in the portal; only the fee-attestation checkbox and the
+> $15 submit remain. Items 6–11 below are done, item 11 turned out to be
+> unnecessary, and the "Save as draft" instruction in this document was wrong.
+
 Written 2026-08-26 for a fresh Claude instance with no prior conversation.
 Everything needed is in this file or in the repo. Work through
 `docs/10dlc-resubmit-checklist.md` — this document covers **Section B only**.
@@ -81,11 +86,11 @@ Portal: https://nuui.us.grasshopper.com/CarrierRegistration
 - `#ai-cancel` ("Edit Form") closes the modal safely and submits nothing.
 - **`#ai-submit` ("Ignore & Submit Application to Carrier") is the real
   submit and costs $15.** Never click it. Hand back to Dave.
-- **Filling a field does not save it.** In the prior session every campaign
-  field was filled and then lost because only "Edit Form" was clicked — the
-  carrier reviewed the OLD text. Use **Save as draft** or complete the
-  submission flow so values persist, and re-read the field values back to
-  confirm.
+- **There is NO "Save as draft."** The only buttons are Cancel and Review
+  Application, and neither writes to the server. **Nothing persists until the
+  campaign is actually submitted.** That is why the opt-in text was lost last
+  time. Never fill this form across two sessions — fill it and submit it in one
+  sitting, and re-read every field value back before submitting.
 - The pre-submission AI scanner is a weak literal-string matcher and is
   non-deterministic — the same submission produced different cards on repeat
   runs, including self-contradictory advice. It is advisory only and does not
