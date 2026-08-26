@@ -1,10 +1,34 @@
-# 10DLC status — Section B complete, awaiting submit
+# 10DLC status — SUBMITTED, in carrier review
 
 Written 2026-08-26 after working the campaign form directly in the Grasshopper
 portal. Everything below was read out of the live form, not inferred.
 
 Companion documents: `docs/10dlc-resubmit-checklist.md` (the item list) and
 `docs/sms-compliance.md` (full history and paste-ready field text).
+
+---
+
+## Current state
+
+**Submitted Wednesday 2026-08-26.** Campaign #1 now reads **"In Review by
+Carrier"** (previously "Declined by Carrier"), and the portal shows the rewritten
+Description with the `www` URL, confirming the whole edit persisted. Brand
+registration shows **Verified**.
+
+Pre-submission scanner ended at **Confidence Level: Fair** with one card left,
+"Description: Could not validate content." — a fetch failure, not a defect. See
+the scanner-contradiction section in `docs/sms-compliance.md` for why chasing
+"High" is not worth doing.
+
+**Expect an answer between Friday 2026-09-04 and Friday 2026-09-11** (7–12
+business days). Labor Day, Monday 2026-09-07, falls inside that window, so the
+late end realistically slips to **Monday 2026-09-14**. $15 was charged.
+
+Nothing is pending on our side. If it is approved, Instant Response re-enables
+itself automatically with its previous settings. If it is declined again, the
+contingency items are 4, 12 and 13 in the checklist — mailing address and
+Workspace email — and the new reason code should be read from the portal before
+touching any of them.
 
 ---
 
@@ -49,16 +73,15 @@ neither writes to the server. Nothing persists until the campaign is actually
 submitted — that, not a misclick, is why the opt-in text vanished last time.
 **If you close that tab, all of this is gone.**
 
-Everything validates except one box, which is yours to tick — it's the fee
-attestation, and it's currently disabling the button:
+All three steps below were completed on 2026-08-26:
 
-1. Tick **"I have reviewed my SMS registration and confirm it is correct."**
-2. Click **Review Application** — safe, validation + AI check only.
-3. Then the real **$15 submit**. 7–12 business days.
+1. ~~Tick "I have reviewed my SMS registration and confirm it is correct."~~
+2. ~~Click Review Application — safe, validation + AI check only.~~
+3. ~~Then the real $15 submit.~~ Done; campaign is with the carrier.
 
 ---
 
-## If the tab was lost before submitting
+## If it is declined again and the form must be rebuilt
 
 Everything above has to be redone from scratch in one sitting. The exact field
 text is in `docs/sms-compliance.md` under "Campaign field text — paste

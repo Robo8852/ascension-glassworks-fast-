@@ -1,5 +1,8 @@
 # 10DLC resubmission checklist
 
+> **SUBMITTED 2026-08-26 — Campaign #1 is "In Review by Carrier."** Answer due
+> between 2026-09-04 and 2026-09-14. See `docs/10dlc-status.md`.
+
 Carrier declined the campaign on **2026-08-24** for two stated reasons:
 *"rejected because of provided Opt-in information"* and *"rejected due to Terms
 and Conditions issues."* Source of truth for every item below is Grasshopper's
@@ -121,10 +124,10 @@ days** of carrier review per attempt. That is why we fix everything in one pass.
 
 ## D. Before clicking submit
 
-- [ ] **14. Verify every changed string is live on production.** Reviewers read
+- [x] **14. Verify every changed string is live on production.** Reviewers read
   the live pages, not the repo.
 
-- [ ] **15. Confirm the $15 vetting fee** applies to this resubmission, and
+- [x] **15. Confirm the $15 vetting fee** applies to this resubmission, and
   budget 7–12 business days for the answer.
 
 ---
