@@ -72,7 +72,7 @@ days** of carrier review per attempt. That is why we fix everything in one pass.
 
 ## B. Portal / registration actions
 
-- [ ] **6. Upload the Evidence screenshot** — a screenshot of `/contact`
+- [x] **6. Upload the Evidence screenshot** — a screenshot of `/contact`
   showing the consent checkbox and its disclosure. The field read
   `No file chosen` on the submitted registration.
   **Screenshot captured 2026-08-26 → `docs/evidence/contact-sms-consent.png`**
@@ -80,23 +80,23 @@ days** of carrier review per attempt. That is why we fix everything in one pass.
   not a condition of purchase" line, and the Privacy Policy / SMS Terms links).
   Still needs uploading to the portal.
 
-- [ ] **7. Save the campaign field text.** Our drafted Description and opt-in
+- [x] **7. Save the campaign field text.** Our drafted Description and opt-in
   description were **never persisted** — only "Edit Form" was ever clicked, so
   the carrier reviewed the old vague copy ("provides professional services
   related to doors, windows...").
 
-- [ ] **8. Repoint the Terms & Conditions field** from `/privacy` to the
+- [x] **8. Repoint the Terms & Conditions field** from `/privacy` to the
   standalone `/sms-terms` URL.
 
-- [ ] **9. Confirm the brand shows Verified.** A campaign cannot pass under an
+- [x] **9. Confirm the brand shows Verified.** A campaign cannot pass under an
   unverified brand. Separate registration, $4.50 per attempt, and it fails on
   small address mismatches against the IRS SS-4 / LTR147C.
 
-- [ ] **10. Get the actual reason code from the portal.** The decline email
+- [x] **10. Get the actual reason code from the portal.** The decline email
   showed `TCR Campaign Id: .` — blank, with no code. The portal shows the real
   one, which replaces our inference with fact.
 
-- [ ] **11. Contact Grasshopper support** for help creating the new
+- [~] **11. Contact Grasshopper support** — NOT NEEDED for help creating the new
   registration. The guide explicitly directs you to do this after a decline.
 
 ---
@@ -143,3 +143,63 @@ days** of carrier review per attempt. That is why we fix everything in one pass.
 - **Instant Response is currently disabled** because outbound texting is
   blocked pending registration. It re-enables automatically with the previous
   settings once the campaign is approved. Nothing to fix.
+
+---
+
+## Portal findings — 2026-08-26 session
+
+Read directly out of the live campaign form, so these supersede earlier
+inferences.
+
+**The two rejection causes, confirmed.** Neither was guesswork:
+
+1. **Opt-in.** `Describe your opt-in process` still held the OLD text. It
+   quoted a checkbox reading *"By checking this box, you agree to receive
+   informational messages…"* and described a single box. That checkbox no
+   longer existed on the site, and there was no mention of an opt-out box, so
+   the reviewer's comparison against the live page failed.
+2. **Terms and Conditions.** `termsAndConditionsLink` pointed at
+   `/privacy`, not `/sms-terms`.
+
+**Correction to a prior assumption.** The checklist said the campaign field
+text was "never persisted." Only half true — `campaignDescription` DID persist
+and carried our new copy. `messagePermission` did not. The carrier reviewed a
+good Description alongside a stale opt-in description.
+
+**There is no numeric reason code (item 10).** The portal shows exactly the
+same prose as the decline email, and the TCR Campaign Id is blank there too.
+No code exists to retrieve.
+
+**Item 11 is unnecessary.** "Edit" on the declined campaign reopens the full
+registration form with all values intact and resubmits in place. A brand-new
+registration is not required, so there is nothing to ask support about.
+
+**There is no "Save as draft."** The only buttons are Cancel and Review
+Application, and neither writes to the server. **Nothing persists until the
+campaign is actually submitted** — this, not a misclick, is why the opt-in text
+was lost last time. Never stage this form across sessions.
+
+### Additional defects found and fixed in the same pass
+
+- `optInMessagingInput` said "Message frequency **varies**" while every other
+  field and the website say "may vary." Now consistent.
+- `campaignDescription` used the apex domain; every other field used `www`.
+  All now `www` (the apex 307-redirects, so the mismatch was gratuitous).
+- Opt-out keywords were only STOP and CANCEL. Added UNSUBSCRIBE, QUIT, END;
+  added INFO to help keywords. Relevant to reason codes 851 / 861.
+- `helpMessagingInput` had no rates/frequency disclosure. Added.
+- Uploaded a second screenshot (`docs/evidence/privacy-sms-terms.png`) to the
+  privacy-policy Upload field, showing the verbatim Data Sharing bullets and
+  numbered terms live on `/privacy` — direct rebuttal to the T&C decline.
+
+### Checked and deliberately left alone
+
+- **`isAffliations` reads "I will NOT use my registered phone number(s) for
+  affiliate marketing."** It is negative-phrased, so **checked is correct**.
+  Do not "fix" this.
+- `embeddedPhoneNumber` was switched on, because the HELP auto-reply and
+  sample message both contain (941) 241-0002. Note the portal then
+  **auto-appended** a clumsy sentence to sample message 1; it was rewritten by
+  hand so the message still contains a phone number and a URL but reads
+  naturally.
+- Marketing sub-use-case remains unchecked; Informational only.
